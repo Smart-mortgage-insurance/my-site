@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>הוזלת ביטוח חיים למשכנתא | בדיקה חינם</title>
- <meta name="description" content="בדיקה חינם להוזלת ביטוח חיים למשכנתא. חסוך אלפי שקלים לאורך תקופת ההלוואה בתוך דקות בודדות.">
+<meta name="description" content="בדיקה חינם להוזלת ביטוח חיים למשכנתא. חסוך אלפי שקלים לאורך תקופת ההלוואה בתוך דקות בודדות.">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
@@ -188,6 +189,42 @@
   }
   .btn-secondary:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.05); }
 
+  /* סטייל המחשבון */
+  .calc-section { background: var(--white); padding: 60px 24px; }
+  .calc-box { 
+    background: var(--dark); 
+    border-radius: 16px; 
+    padding: 30px; 
+    color: #fff; 
+    max-width: 500px; 
+    margin: 0 auto; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
+    position: relative;
+    overflow: hidden;
+  }
+  .calc-header { text-align: center; margin-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; }
+  .calc-header h3 { font-size: 20px; color: var(--gold); }
+  .calc-row { margin-bottom: 25px; }
+  .calc-row label { display: block; font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 10px; }
+  .calc-row input[type=range] { width: 100%; accent-color: var(--gold); cursor: pointer; }
+  .val-display { display: flex; justify-content: space-between; font-weight: 700; color: #fff; margin-top: 5px; }
+  .calc-result { background: rgba(255,255,255,0.07); border-radius: 10px; padding: 20px; margin-top: 20px; }
+  .res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+  .res-item { text-align: center; padding: 10px; }
+  .res-item.full { grid-column: span 2; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 10px; }
+  .res-item span { display: block; font-size: 12px; color: rgba(255,255,255,0.5); }
+  .res-item strong { font-size: 22px; color: var(--gold); display: block; }
+  .res-item.full strong { font-size: 28px; color: #4caf7d; }
+  
+  /* סטייל לשורת ההבהרה */
+  .calc-disclaimer {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 15px;
+    line-height: 1.4;
+    text-align: center;
+  }
+
   .trust-bar {
     background: var(--white);
     border-bottom: 1px solid var(--border);
@@ -370,6 +407,7 @@
     .hero-divider { display: none; }
     .sticky-bar span { font-size: 13px; }
     section { padding: 52px 16px; }
+    .calc-box { padding: 25px 20px; }
   }
 </style>
 </head>
@@ -377,7 +415,7 @@
 
 <header>
   <div class="logo">ביטוח <span>חכם</span> למשכנתא</div>
-  <a href="mailto:z7621752@gmail.com" class="header-cta">שלח לי לבדיקה חינם ←</a>
+  <a href="mailto:z7621752@gmail.com?subject=בדיקה" class="header-cta">שלח לי לבדיקה חינם ←</a>
 </header>
 
 <section class="hero">
@@ -415,6 +453,53 @@
     <div class="cta-group">
       <a href="mailto:z7621752@gmail.com?subject=בדיקה" class="btn-primary">שלח "בדיקה" במייל ←</a>
       <a href="tel:0733021404" class="btn-secondary">📞 השאר הודעה בתא קולי</a>
+    </div>
+  </div>
+</section>
+
+<section class="calc-section">
+  <div class="container">
+    <div class="section-label">כמה תחסכו?</div>
+    <h2 class="section-title">מחשבון חיסכון מהיר (35% הנחה)</h2>
+    <div class="calc-box">
+      <div class="calc-header">
+        <h3>בדקו כמה כסף נשאר אצלכם בכיס</h3>
+      </div>
+      
+      <div class="calc-row">
+        <label>כמה אתם משלמים היום בחודש?</label>
+        <input type="range" id="currPrice" min="30" max="500" value="100">
+        <div class="val-display"><span id="currPrice-lbl">₪100</span></div>
+      </div>
+
+      <div class="calc-row">
+        <label>כמה שנים נשארו למשכנתא?</label>
+        <input type="range" id="yearsLeft" min="1" max="35" value="20">
+        <div class="val-display"><span id="yearsLeft-lbl">20 שנה</span></div>
+      </div>
+
+      <div class="calc-result">
+        <div class="res-grid">
+          <div class="res-item">
+            <span>חיסכון חודשי</span>
+            <strong id="save-month">₪35</strong>
+          </div>
+          <div class="res-item">
+            <span>חיסכון שנתי</span>
+            <strong id="save-year">₪420</strong>
+          </div>
+          <div class="res-item full">
+            <span>חיסכון כולל לכל התקופה</span>
+            <strong id="save-total">₪8,400</strong>
+          </div>
+        </div>
+      </div>
+      
+      <a href="mailto:z7621752@gmail.com?subject=בדיקה" class="btn-primary" id="mailLink" style="display:block; text-align:center; text-decoration:none; margin-top:20px;">אני רוצה את ההנחה הזו ←</a>
+      
+      <p class="calc-disclaimer">
+        * הנתונים המוצגים מבוססים על ממוצע חיסכון של 35% ומהווים הערכה בלבד. גובה החיסכון הסופי אינו מובטח ובכפוף לבדיקה פרטנית של תנאי הפוליסה הקיימת, גיל המבוטחים ומצב בריאותי.
+      </p>
     </div>
   </div>
 </section>
@@ -578,6 +663,33 @@
   <span>9/10 פוליסות — <b>מצאנו חיסכון</b></span>
   <a href="mailto:z7621752@gmail.com?subject=בדיקה" class="sticky-btn">שלח "בדיקה" חינם →</a>
 </div>
+
+<script>
+  function update() {
+    const price = document.getElementById('currPrice').value;
+    const years = document.getElementById('yearsLeft').value;
+    const discount = 0.35; // 35% קבוע
+
+    document.getElementById('currPrice-lbl').textContent = '₪' + price;
+    document.getElementById('yearsLeft-lbl').textContent = years + ' שנה';
+
+    const monthly = Math.round(price * discount);
+    const yearly = monthly * 12;
+    const total = yearly * years;
+
+    document.getElementById('save-month').textContent = '₪' + monthly.toLocaleString();
+    document.getElementById('save-year').textContent = '₪' + yearly.toLocaleString();
+    document.getElementById('save-total').textContent = '₪' + total.toLocaleString();
+
+    // שומרים על שורת הנושא "בדיקה" בלבד כפי שביקשת
+    const mailLink = document.getElementById('mailLink');
+    mailLink.href = "mailto:z7621752@gmail.com?subject=בדיקה";
+  }
+
+  document.getElementById('currPrice').addEventListener('input', update);
+  document.getElementById('yearsLeft').addEventListener('input', update);
+  update();
+</script>
 
 </body>
 </html>
