@@ -16,7 +16,7 @@
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght=300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -46,7 +46,7 @@
     overflow-x: hidden;
   }
 
-  a { color: inherit; text-decoration: none; }
+  a { color: inherit; text-decoration: none; cursor: pointer; }
 
   @keyframes shimmer { 0%{background-position:0 200%;} 100%{background-position:0 -200%;} }
   @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-12px);} }
@@ -62,12 +62,23 @@
     position: relative;
     z-index: 10;
   }
+  .logo-container {
+    display: flex;
+    flex-direction: column;
+  }
   .logo {
     font-size: 17px;
     font-weight: 700;
     letter-spacing: -0.3px;
+    line-height: 1.2;
   }
   .logo span { color: var(--gold); }
+  .logo-sub {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 2px;
+    font-weight: 500;
+  }
   .header-cta {
     background: var(--red);
     color: #fff;
@@ -475,8 +486,11 @@
 <body>
 
 <header>
-  <div class="logo">ביטוח <span>חכם</span> למשכנתא</div>
-  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=z7621752@gmail.com&su=%D7%91%D7%93%D7%99%D7%A7%D7%94" target="_blank" class="header-cta">שלח לי לבדיקה חינם ←</a>
+  <div class="logo-container">
+    <div class="logo">ביטוח <span>חכם</span> למשכנתא</div>
+    <div class="logo-sub">מבית אבי ביטוחים | 052-7621752</div>
+  </div>
+  <a class="header-cta class-mail-cta">שלח לי לבדיקה חינם ←</a>
 </header>
 
 <section class="hero">
@@ -512,7 +526,7 @@
     </div>
     
     <div class="cta-group">
-      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=z7621752@gmail.com&su=%D7%91%D7%93%D7%99%D7%A7%D7%94" target="_blank" class="btn-primary">שלח "בדיקה" במייל ←</a>
+      <a class="btn-primary class-mail-cta">שלח "בדיקה" במייל ←</a>
       <a href="tel:0733021404" class="btn-secondary">📞 השאר הודעה בתא קולי</a>
     </div>
   </div>
@@ -556,7 +570,7 @@
         </div>
       </div>
       
-      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=z7621752@gmail.com&su=%D7%91%D7%93%D7%99%D7%A7%D7%94" target="_blank" class="btn-primary" id="mailLink" style="display:block; text-align:center; text-decoration:none; margin-top:20px;">אני רוצה את ההנחה הזו ←</a>
+      <a class="btn-primary" id="mailLink" style="display:block; text-align:center; text-decoration:none; margin-top:20px;">אני רוצה את ההנחה הזו ←</a>
       
       <p class="calc-disclaimer">
         * הנתונים המוצגים מבוססים על ממוצע חיסכון של 35% ומהווים הערכה בלבד. גובה החיסכון הסופי אינו מובטח ובכפוף לבדיקה פרטנית של תנאי הפוליסה הקיימת, גיל המבוטחים ומצב בריאותי.
@@ -607,7 +621,7 @@
         <div class="step-num">1</div>
         <div class="step-body">
           <h3>שולחים לנו את פרטי הפוליסה</h3>
-          <p>מייל עם המילה "בדיקה" ואנחנו מסתדרים עם השאר. לא צריך להכין כלום מראש.</p>
+          <p>מייל עם המילה "בדיקה" ואנו מסתדרים עם השאר. לא צריך להכין כלום מראש.</p>
         </div>
       </div>
       <div class="step">
@@ -755,15 +769,15 @@
     <h2>מוכנים לדעת כמה תחסכו?</h2>
     <p>הבדיקה חינם, לוקחת דקות. חבל על כל חודש שעובר.</p>
     <div class="contact-cards">
-      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=z7621752@gmail.com&su=%D7%91%D7%93%D7%99%D7%A7%D7%94" target="_blank" class="contact-card">
+      <a class="contact-card class-mail-cta">
         <div class="icon">📧</div>
         <div class="type">מייל</div>
         <div class="value">שלח "בדיקה"</div>
       </a>
       <a href="tel:0733021404" class="contact-card">
         <div class="icon">📞</div>
-        <div class="type">תא קולי 24/6</div>
-        <div class="value">0733-021-404</div>
+        <div class="type">תא קולי</div>
+        <div class="value">073-3021404</div>
       </a>
     </div>
     <p class="contact-note">הבדיקה לוקחת <strong>דקות בודדות</strong>.<br>החיסכון נשאר אצלכם <strong>שנים</strong>.</p>
@@ -776,14 +790,39 @@
 
 <div class="sticky-bar">
   <span>9/10 פוליסות — <b>מצאנו חיסכון</b></span>
-  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=z7621752@gmail.com&su=%D7%91%D7%93%D7%99%D7%A7%D7%94" target="_blank" class="sticky-btn">שלח "בדיקה" חינם ←</a>
+  <a class="sticky-btn class-mail-cta">שלח "בדיקה" חינם ←</a>
 </div>
 
 <script>
+  function getMailUrl(subject, body) {
+    const toEmail = "z7621752@gmail.com";
+    const encodedSubject = encodeURIComponent(subject || "בדיקה");
+    const encodedBody = body ? encodeURIComponent(body) : "";
+    
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+      return "mailto:" + toEmail + "?subject=" + encodedSubject + (encodedBody ? "&body=" + encodedBody : "");
+    } else {
+      return "https://mail.google.com/mail/?view=cm&fs=1&to=" + toEmail + "&su=" + encodedSubject + (encodedBody ? "&body=" + encodedBody : "");
+    }
+  }
+
+  function handleMailCtaClick(e) {
+    e.preventDefault();
+    const url = getMailUrl("בדיקה", "");
+    
+    if (url.startsWith("http")) {
+      window.open(url, "_blank");
+    } else {
+      window.location.href = url;
+    }
+  }
+
   function update() {
     const price = document.getElementById('currPrice').value;
     const years = document.getElementById('yearsLeft').value;
-    const discount = 0.35; // 35% קבוע
+    const discount = 0.35;
 
     document.getElementById('currPrice-lbl').textContent = '₪' + price;
     document.getElementById('yearsLeft-lbl').textContent = years + ' שנה';
@@ -797,10 +836,13 @@
     document.getElementById('save-total').textContent = '₪' + total.toLocaleString();
 
     const mailLink = document.getElementById('mailLink');
-    mailLink.href = "https://mail.google.com/mail/?view=cm&fs=1&to=z7621752@gmail.com&su=%D7%91%D7%93%D7%99%D7%A7%D7%94";
+    mailLink.onclick = function(e) {
+      e.preventDefault();
+      const url = getMailUrl("בדיקה", "");
+      if (url.startsWith("http")) { window.open(url, "_blank"); } else { window.location.href = url; }
+    };
   }
 
-  // פונקציית הצגה והסתרה לתגובות
   function toggleTestimonials() {
     const container = document.getElementById('moreTestimonials');
     const btn = document.getElementById('toggleBtn');
@@ -814,17 +856,25 @@
     }
   }
 
-  // פונקציה לשליחת המשוב במייל ישירות דרך ג'ימייל בדפדפן
   function sendFeedback() {
     const name = document.getElementById('fb-name').value;
     const city = document.getElementById('fb-city').value;
     const text = document.getElementById('fb-text').value;
     
-    const subject = encodeURIComponent("משוב לקוח חדש מהאתר");
-    const body = encodeURIComponent("שם: " + name + "\nעיר: " + city + "\nמשוב: " + text);
+    const subject = "משוב לקוח חדש מהאתר";
+    const body = "שם: " + name + "\nעיר: " + city + "\nמשוב: " + text;
     
-    window.open("https://mail.google.com/mail/?view=cm&fs=1&to=z7621752@gmail.com&su=" + subject + "&body=" + body, "_blank");
+    const url = getMailUrl(subject, body);
+    if (url.startsWith("http")) {
+      window.open(url, "_blank");
+    } else {
+      window.location.href = url;
+    }
   }
+
+  document.querySelectorAll('.class-mail-cta').forEach(function(element) {
+    element.addEventListener('click', handleMailCtaClick);
+  });
 
   document.getElementById('currPrice').addEventListener('input', update);
   document.getElementById('yearsLeft').addEventListener('input', update);
