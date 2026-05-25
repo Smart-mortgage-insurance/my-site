@@ -214,7 +214,6 @@
   }
   .btn-secondary:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.05); }
 
-  /* סטייל מחשבון אולטרה קומפקטי ונמוך */
   .calc-section { background: var(--white); padding: 25px 24px; }
   .calc-box { 
     background: var(--dark); 
@@ -249,7 +248,6 @@
     text-align: center;
   }
 
-  /* אזור רקע מעוצב כהה ומקצועי לטופס הסגירה */
   .bottom-form-wrapper {
     background: linear-gradient(180deg, #1e2a40 0%, var(--dark) 100%);
     padding: 60px 24px;
@@ -270,7 +268,6 @@
     animation: pc 4s ease-in-out infinite;
   }
 
-  /* טופס דיגיטלי מובנה שקט לנטפרי */
   .lead-form-container {
     background: var(--white);
     border: 3px solid var(--red);
@@ -481,7 +478,6 @@
     color: #fff;
   }
 
-  /* אזור משוב לקוחות */
   .feedback-box {
     margin-top: 40px;
     background: var(--white);
@@ -838,7 +834,8 @@
 
     <div class="feedback-box">
       <h3>השאירו לנו משוב חם</h3>
-      <form class="feedback-form" action="https://forminit.com/submit/96f2fbhwwcfv" method="POST">
+      <form class="feedback-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="4edea9e2-47fb-4fa3-a1f9-9b90937a4703">
         <input type="hidden" name="סוג הטופס" value="משוב לקוח מהאתר">
         <input type="text" name="שם הלקוח" placeholder="שמכם המלא" required>
         <input type="text" name="עיר" placeholder="עיר מגורים" required>
@@ -875,7 +872,8 @@
     <h3>טופס בדיקה דיגיטלי</h3>
     <p>מלאו פרטים קצרים והנתונים יישלחו אלינו ישירות לבדיקה</p>
     
-    <form class="main-form" action="https://forminit.com/submit/96f2fbhwwcfv" method="POST" onsubmit="injectCalcValues()">
+    <form class="main-form" action="https://api.web3forms.com/submit" method="POST" onsubmit="injectCalcValues()">
+      <input type="hidden" name="access_key" value="4edea9e2-47fb-4fa3-a1f9-9b90937a4703">
       <input type="hidden" name="תשלום חודשי נוכחי" id="hidden_price" value="">
       <input type="hidden" name="שנים שנותרו למשכנתא" id="hidden_years" value="">
       <input type="hidden" name="צפי חיסכון חודשי" id="hidden_save_month" value="">
@@ -911,7 +909,6 @@
     }
   }
 
-  // פונקציה שמזריקה את ערכי המחשבון העדכניים לתוך הטופס רגע לפני השליחה לשרת
   function injectCalcValues() {
     document.getElementById('hidden_price').value = "₪" + document.getElementById('currPrice').value;
     document.getElementById('hidden_years').value = document.getElementById('yearsLeft').value;
