@@ -44,6 +44,7 @@
     line-height: 1.6;
     font-size: 16px;
     overflow-x: hidden;
+    padding-bottom: 60px;
   }
 
   a { color: inherit; text-decoration: none; cursor: pointer; }
@@ -55,7 +56,7 @@
   header {
     background: var(--dark);
     color: #fff;
-    padding: 14px 24px;
+    padding: 12px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -74,9 +75,13 @@
   }
   .logo span { color: var(--gold); }
   .logo-sub {
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.7);
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.65);
     margin-top: 2px;
+    font-weight: 400;
+  }
+  .logo-sub span {
+    color: var(--gold);
     font-weight: 500;
   }
   .header-cta {
@@ -93,7 +98,7 @@
   .hero {
     background: linear-gradient(170deg, #1e2a40 0%, var(--dark) 55%, #141c2e 100%);
     color: #fff;
-    padding: 72px 24px 80px;
+    padding: 72px 24px 60px;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -186,9 +191,9 @@
   .btn-primary {
     background: var(--red);
     color: #fff;
-    padding: 16px 32px;
+    padding: 14px 28px;
     border-radius: 8px;
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 700;
     cursor: pointer;
     border: none;
@@ -199,9 +204,9 @@
   .btn-secondary {
     background: transparent;
     color: #fff;
-    padding: 16px 28px;
+    padding: 14px 24px;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
     border: 1.5px solid rgba(255,255,255,0.35);
     cursor: pointer;
@@ -209,40 +214,139 @@
   }
   .btn-secondary:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.05); }
 
-  /* סטייל המחשבון */
-  .calc-section { background: var(--white); padding: 60px 24px; }
+  /* סטייל מחשבון אולטרה קומפקטי ונמוך */
+  .calc-section { background: var(--white); padding: 25px 24px; }
   .calc-box { 
     background: var(--dark); 
-    border-radius: 16px; 
-    padding: 30px; 
+    border-radius: 12px; 
+    padding: 15px; 
     color: #fff; 
-    max-width: 500px; 
+    max-width: 440px; 
     margin: 0 auto; 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15); 
     position: relative;
     overflow: hidden;
   }
-  .calc-header { text-align: center; margin-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; }
-  .calc-header h3 { font-size: 20px; color: var(--gold); }
-  .calc-row { margin-bottom: 25px; }
-  .calc-row label { display: block; font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 10px; }
-  .calc-row input[type=range] { width: 100%; accent-color: var(--gold); cursor: pointer; }
-  .val-display { display: flex; justify-content: space-between; font-weight: 700; color: #fff; margin-top: 5px; }
-  .calc-result { background: rgba(255,255,255,0.07); border-radius: 10px; padding: 20px; margin-top: 20px; }
-  .res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-  .res-item { text-align: center; padding: 10px; }
-  .res-item.full { grid-column: span 2; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 10px; }
-  .res-item span { display: block; font-size: 12px; color: rgba(255,255,255,0.5); }
-  .res-item strong { font-size: 22px; color: var(--gold); display: block; }
-  .res-item.full strong { font-size: 28px; color: #4caf7d; }
+  .calc-header { text-align: center; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 6px; }
+  .calc-header h3 { font-size: 16px; color: var(--gold); }
+  .calc-row { margin-bottom: 10px; }
+  .calc-row label { display: block; font-size: 12px; color: rgba(255,255,255,0.7); margin-bottom: 3px; }
+  .calc-row input[type=range] { width: 100%; accent-color: var(--gold); cursor: pointer; height: 4px; }
+  .val-display { display: flex; justify-content: space-between; font-weight: 700; color: #fff; margin-top: 1px; font-size: 13px; }
+  .calc-result { background: rgba(255,255,255,0.06); border-radius: 8px; padding: 10px; margin-top: 10px; }
+  .res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .res-item { text-align: center; padding: 4px; }
+  .res-item.full { grid-column: span 2; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 4px; padding-top: 6px; }
+  .res-item span { display: block; font-size: 11px; color: rgba(255,255,255,0.5); }
+  .res-item strong { font-size: 16px; color: var(--gold); display: block; }
+  .res-item.full strong { font-size: 20px; color: #4caf7d; }
   
-  /* סטייל לשורת ההבהרה */
   .calc-disclaimer {
-    font-size: 11px;
-    color: rgba(255,255,255,0.4);
-    margin-top: 15px;
-    line-height: 1.4;
+    font-size: 10px;
+    color: rgba(255,255,255,0.35);
+    margin-top: 8px;
+    line-height: 1.3;
     text-align: center;
+  }
+
+  /* אזור רקע מעוצב כהה ומקצועי לטופס הסגירה */
+  .bottom-form-wrapper {
+    background: linear-gradient(180deg, #1e2a40 0%, var(--dark) 100%);
+    padding: 60px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .bottom-form-wrapper::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(170deg, transparent 30%, rgba(255,255,255,0.03) 50%, transparent 70%);
+    background-size: 100% 200%;
+    animation: shimmer 4s infinite linear;
+    pointer-events: none;
+  }
+  .bg-circle-bottom {
+    position: absolute; width: 280px; height: 280px; border-radius: 50%;
+    background: rgba(184,149,42,0.05); bottom: -60px; right: -60px;
+    animation: pc 4s ease-in-out infinite;
+  }
+
+  /* טופס דיגיטלי מובנה שקט לנטפרי */
+  .lead-form-container {
+    background: var(--white);
+    border: 3px solid var(--red);
+    border-radius: var(--radius);
+    padding: 30px;
+    max-width: 470px;
+    margin: 0 auto;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+    position: relative;
+    z-index: 5;
+  }
+  .lead-form-container h3 {
+    font-size: 24px;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 6px;
+    color: var(--dark);
+  }
+  .lead-form-container p {
+    font-size: 14px;
+    text-align: center;
+    color: var(--muted);
+    margin-bottom: 22px;
+  }
+  .main-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .form-group label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--dark);
+  }
+  .form-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 15px;
+    outline: none;
+    transition: border 0.2s;
+  }
+  .form-group input:focus {
+    border-color: var(--red);
+    box-shadow: 0 0 0 3px rgba(184,149,42,0.1);
+  }
+  .form-submit-btn {
+    background: var(--red);
+    color: #fff;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-align: center;
+    margin-top: 6px;
+    box-shadow: 0 4px 12px rgba(184,149,42,0.2);
+  }
+  .form-submit-btn:hover {
+    background: var(--red-dark);
+  }
+  .form-status {
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 10px;
+    display: none;
   }
 
   .trust-bar {
@@ -264,7 +368,7 @@
   }
   @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
 
-  section { padding: 72px 24px; }
+  section { padding: 60px 24px; }
   .container { max-width: 880px; margin: 0 auto; }
   .section-label {
     font-size: 12px;
@@ -272,20 +376,20 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     color: var(--red);
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
   .section-title {
-    font-size: clamp(22px, 4vw, 36px);
+    font-size: clamp(22px, 4vw, 34px);
     font-weight: 900;
     line-height: 1.25;
     letter-spacing: -0.5px;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
   }
   .section-sub {
-    font-size: 17px;
+    font-size: 16px;
     color: var(--muted);
     max-width: 560px;
-    margin-bottom: 48px;
+    margin-bottom: 36px;
   }
 
   .problem { background: var(--white); }
@@ -358,7 +462,6 @@
     font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 20px; margin-bottom: 14px;
   }
 
-  /* אלמנטים מוסתרים לתגובות הנוספות */
   .hidden-testimonials {
     display: none;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -385,27 +488,27 @@
     color: #fff;
   }
 
-  /* סטייל עבור השארת משוב */
+  /* אזור משוב לקוחות */
   .feedback-box {
     margin-top: 40px;
     background: var(--white);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 30px;
-    max-width: 500px;
+    padding: 25px;
+    max-width: 480px;
     margin-left: auto;
     margin-right: auto;
   }
-  .feedback-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 15px; text-align: center; }
-  .feedback-form { display: flex; flex-direction: column; gap: 12px; }
+  .feedback-box h3 { font-size: 17px; font-weight: 700; margin-bottom: 12px; text-align: center; }
+  .feedback-form { display: flex; flex-direction: column; gap: 10px; }
   .feedback-form input, .feedback-form textarea {
     width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px;
     font-family: inherit; font-size: 14px; color: var(--dark); outline: none;
   }
   .feedback-form input:focus, .feedback-form textarea:focus { border-color: var(--red); }
-  .feedback-form textarea { resize: vertical; min-height: 80px; }
+  .feedback-form textarea { resize: vertical; min-height: 70px; }
   .feedback-btn {
-    background: var(--dark); color: #fff; padding: 12px; border: none; border-radius: 6px;
+    background: var(--dark); color: #fff; padding: 11px; border: none; border-radius: 6px;
     font-size: 15px; font-weight: 700; cursor: pointer; transition: background 0.2s; text-align: center;
   }
   .feedback-btn:hover { background: var(--red-dark); }
@@ -433,7 +536,7 @@
     background: var(--red);
     color: #fff;
     text-align: center;
-    padding: 80px 24px;
+    padding: 60px 24px;
     position: relative; overflow: hidden;
   }
   .contact-section::before {
@@ -441,20 +544,20 @@
     background: linear-gradient(170deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
     background-size: 100% 200%; animation: shimmer 4s infinite linear; pointer-events: none;
   }
-  .contact-section h2 { font-size: clamp(24px, 4vw, 40px); font-weight: 900; letter-spacing: -0.5px; margin-bottom: 12px; position: relative; }
-  .contact-section p { font-size: 18px; color: rgba(255,255,255,0.8); margin-bottom: 44px; position: relative; }
-  .contact-cards { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; position: relative; }
+  .contact-section h2 { font-size: clamp(24px, 4vw, 36px); font-weight: 900; letter-spacing: -0.5px; margin-bottom: 12px; position: relative; }
+  .contact-section p { font-size: 17px; color: rgba(255,255,255,0.8); margin-bottom: 30px; position: relative; }
+  .contact-cards { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px; position: relative; }
   .contact-card {
     background: rgba(255,255,255,0.12);
     border: 1.5px solid rgba(255,255,255,0.25);
     border-radius: var(--radius);
-    padding: 28px 36px; min-width: 200px; transition: all 0.3s; cursor: pointer;
+    padding: 20px 30px; min-width: 180px; transition: all 0.3s; cursor: pointer;
   }
   .contact-card:hover { background: rgba(255,255,255,0.2); transform: translateY(-5px); }
-  .contact-card .icon { font-size: 30px; margin-bottom: 10px; }
-  .contact-card .type { font-size: 12px; font-weight: 700; letter-spacing: 0.5px; opacity: 0.6; margin-bottom: 6px; text-transform: uppercase; }
-  .contact-card .value { font-size: 18px; font-weight: 700; }
-  .contact-note { font-size: 15px; color: rgba(255,255,255,0.65); position: relative; }
+  .contact-card .icon { font-size: 26px; margin-bottom: 8px; }
+  .contact-card .type { font-size: 11px; font-weight: 700; letter-spacing: 0.5px; opacity: 0.6; margin-bottom: 4px; text-transform: uppercase; }
+  .contact-card .value { font-size: 16px; font-weight: 700; }
+  .contact-note { font-size: 14px; color: rgba(255,255,255,0.65); position: relative; }
   .contact-note strong { color: #fff; }
 
   footer { background: var(--dark); color: rgba(255,255,255,0.45); text-align: center; padding: 24px; font-size: 13px; }
@@ -478,8 +581,11 @@
     .hero-stats { gap: 20px; }
     .hero-divider { display: none; }
     .sticky-bar span { font-size: 13px; }
-    section { padding: 52px 16px; }
-    .calc-box { padding: 25px 20px; }
+    section { padding: 45px 16px; }
+    .calc-section { padding: 20px 10px; }
+    .calc-box { padding: 12px 10px; }
+    .lead-form-container { padding: 20px; }
+    .bottom-form-wrapper { padding: 40px 12px; }
   }
 </style>
 </head>
@@ -488,9 +594,9 @@
 <header>
   <div class="logo-container">
     <div class="logo">ביטוח <span>חכם</span> למשכנתא</div>
-    <div class="logo-sub"> "אבי ביטוחים" | 052-7621752</div>
+    <div class="logo-sub">מבית <span>אבי ביטוחים</span> | 052-7621752</div>
   </div>
-  <a class="header-cta class-mail-cta">שלח לי לבדיקה חינם ←</a>
+  <button class="header-cta" onclick="scrollToForm()">לבדיקת הוזלה חינם ←</button>
 </header>
 
 <section class="hero">
@@ -526,8 +632,8 @@
     </div>
     
     <div class="cta-group">
-      <a class="btn-primary class-mail-cta">שלח "בדיקה" במייל ←</a>
-      <a href="tel:0733021404" class="btn-secondary">📞 השאר הודעה בתא קולי</a>
+      <button onclick="scrollToForm()" class="btn-primary">בדיקת פוליסה ללא עלות ←</button>
+      <a href="tel:0733021404" class="btn-secondary">📞 מוקד הודעות: 0733-021-404</a>
     </div>
   </div>
 </section>
@@ -570,10 +676,10 @@
         </div>
       </div>
       
-      <a class="btn-primary" id="mailLink" style="display:block; text-align:center; text-decoration:none; margin-top:20px;">אני רוצה את ההנחה הזו ←</a>
+      <button onclick="scrollToForm()" class="btn-primary" style="display:block; width:100%; text-align:center; margin-top:10px; border:none; padding:8px; font-size:15px;">אני רוצה לבדוק זכאות להנחה ←</button>
       
       <p class="calc-disclaimer">
-        * הנתונים המוצגים מבוססים על ממוצע חיסכון של 35% ומהווים הערכה בלבד. גובה החיסכון הסופי אינו מובטח ובכפוף לבדיקה פרטנית של תנאי הפוליסה הקיימת, גיל המבוטחים ומצב בריאותי.
+        * הנתונים מבוססים על ממוצע חיסכון של 35% ומהווים הערכה בלבד. גובה החיסכון בכפוף לבדיקה פרטנית של תנאי הפוליסה, גיל ומצב בריאותי.
       </p>
     </div>
   </div>
@@ -581,7 +687,7 @@
 
 <div class="trust-bar">
   <span><span class="dot"></span> בדיקה חינם ללא עלות</span>
-  <span><span class="dot"></span> אפס עמלות ניוד</span>
+  <span><span class="dot"></span> אבטחה מלאה</span>
   <span><span class="dot"></span> אותם כיסויים בדיוק</span>
   <span><span class="dot"></span> תשובה תוך 24 שעות</span>
 </div>
@@ -620,8 +726,8 @@
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-body">
-          <h3>שולחים לנו את פרטי הפוליסה</h3>
-          <p>מייל עם המילה "בדיקה" ואנו מסתדרים עם השאר. לא צריך להכין כלום מראש.</p>
+          <h3>משאירים פרטים בטופס</h3>
+          <p>שם וטלפון בלבד. ללא טפסים ארוכים ומסובכים, והכי חשוב - מתאים לחלוטין למכשירים כשרים ללא וואטסאפ.</p>
         </div>
       </div>
       <div class="step">
@@ -635,95 +741,10 @@
         <div class="step-num">3</div>
         <div class="step-body">
           <h3>מעבר חלק — כל החיסכון לכם</h3>
-          <p>אפס עמלות ניוד. אפס דמי טיפול. כל שקל שנחסך הולך ישירות לכיס שלכם.</p>
+          <p>אפס עמלות ניוד. אבטחה מלאה. כל שקל שנחסך הולך ישירות לכיס שלכם.</p>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="proof">
-  <div class="container">
-    <div class="section-label">לקוחות מספרים</div>
-    <h2 class="section-title">גם הם אמרו "אני כבר במחיר הכי נמוך"</h2>
-    <p class="section-sub">ואז עשינו להם בדיקה...</p>
-    
-    <div class="testimonials">
-      <div class="testimonial">
-        <div class="savings-badge">חסכנו ₪28 בחודש</div>
-        <div class="stars">★★★★★</div>
-        <p>"חשבתי שזה לא שווה, 'כמה שקלים בחודש'... אבל כשהסברו לי שזה ₪8,400 לאורך המשכנתא, שיניתי דעה מיד."</p>
-        <div class="name">אהרן ר.</div>
-        <div class="city">אשדוד</div>
-      </div>
-      <div class="testimonial">
-        <div class="savings-badge">חסכנו ₪45 בחודש</div>
-        <div class="stars">★★★★★</div>
-        <p>"ממש הייתי סקפטי. הבנק אמר לי שאני עם ביטוח מסובסד. אחרי הבדיקה, הועברתי לפוליסה זהה בחצי המחיר."</p>
-        <div class="name">אבי מ.</div>
-        <div class="city">ירושלים</div>
-      </div>
-      <div class="testimonial">
-        <div class="savings-badge">חסכנו ₪19 בחודש</div>
-        <div class="stars">★★★★★</div>
-        <p>"הכל נעשה בלי שנאלצתי לעשות כלום בעצמי. שלחתי מייל, קיבלתי הצעה, חתמתי — וזהו."</p>
-        <div class="name">מיכל ד.</div>
-        <div class="city">בני ברק</div>
-      </div>
-    </div>
-
-    <div class="hidden-testimonials" id="moreTestimonials">
-      <div class="testimonial">
-        <div class="savings-badge">חסכנו ₪54 בחודש</div>
-        <div class="stars">★★★★★</div>
-        <p>"שילמנו מחיר מופרז במשך שנים בלי לדעת בכלל. הבדיקה גילתה שאפשר לחתוך את העלויות כמעט בחצי, חיסכון של מעל 15,000 שקל!"</p>
-        <div class="name">ישראל ו.</div>
-        <div class="city">בני ברק</div>
-      </div>
-      <div class="testimonial">
-        <div class="savings-badge">חסכנו ₪38 בחודש</div>
-        <div class="stars">★★★★★</div>
-        <p>"הייתי בטוח שאין מה לגעת בביטוח הקיים. שלחתי מייל חצי בצחוק, ותוך יום חזרו אליי עם הצעה שחוסכת לי קרוב ל-500 שקלים בכל שנה."</p>
-        <div class="name">שמואל ק.</div>
-        <div class="city">מודיעין עילית</div>
-      </div>
-      <div class="testimonial">
-        <div class="savings-badge">חסכנו ₪62 בחודש</div>
-        <div class="stars">★★★★★</div>
-        <p>"פשוט לא להאמין כמה כסף סתם זרקנו לחברת הביטוח הישנה. השירות היה מהיר, מקצועי ובלי כאבי ראש בכלל."</p>
-        <div class="name">חיים ס.</div>
-        <div class="city">אלעד</div>
-      </div>
-      <div class="testimonial">
-        <div class="savings-badge">חסכנו ₪47 בחודש</div>
-        <div class="stars">★★★★★</div>
-        <p>"ממליץ לכל מי שיש לו משכנתא לא להתעצל ולבדוק. תהליך של דקה וחצי במייל שחוסך לנו המון כסף כל חודש מחדש."</p>
-        <div class="name">משה פ.</div>
-        <div class="city">ביתר עילית</div>
-      </div>
-      <div class="testimonial">
-        <div class="savings-badge">חסכנו ₪32 בחודש</div>
-        <div class="stars">★★★★★</div>
-        <p>"אין מילים! החלפנו את הפוליסה הישנה בקלות, אותם הכיסויים בדיוק אבל במחיר הרבה יותר שפוי."</p>
-        <div class="name">יוסף ח.</div>
-        <div class="city">בית שמש</div>
-      </div>
-    </div>
-
-    <div class="toggle-btn-container">
-      <button type="button" class="btn-toggle" id="toggleBtn" onclick="toggleTestimonials()">צפה בעוד סיפורי הצלחה ↓</button>
-    </div>
-
-    <div class="feedback-box">
-      <h3>נשמח לשמוע את המשוב שלכם!</h3>
-      <div class="feedback-form">
-        <input type="text" id="fb-name" placeholder="שמכם הפרטי">
-        <input type="text" id="fb-city" placeholder="עיר מגורים">
-        <textarea id="fb-text" placeholder="כתבו כאן את חוויית השירות או החיסכון שלכם..."></textarea>
-        <button type="button" class="feedback-btn" onclick="sendFeedback()">שלח משוב במייל ←</button>
-      </div>
-    </div>
-
   </div>
 </section>
 
@@ -764,25 +785,116 @@
   </div>
 </section>
 
+<section class="proof">
+  <div class="container">
+    <div class="section-label">לקוחות מספרים</div>
+    <h2 class="section-title">גם הם אמרו "אני כבר במחיר הכי נמוך"</h2>
+    <p class="section-sub">ואז עשינו להם בדיקה...</p>
+    
+    <div class="testimonials">
+      <div class="testimonial">
+        <div class="savings-badge">חסכנו ₪28 בחודש</div>
+        <div class="stars">★★★★★</div>
+        <p>"חשבתי שזה לא שווה, 'כמה שקלים בחודש'... אבל כשהסברו לי שזה ₪8,400 לאורך המשכנתא, שיניתי דעה מיד."</p>
+        <div class="name">אהרן ר.</div>
+        <div class="city">אשדוד</div>
+      </div>
+      <div class="testimonial">
+        <div class="savings-badge">חסכנו ₪45 בחודש</div>
+        <div class="stars">★★★★★</div>
+        <p>"ממש הייתי סקפטי. הבנק אמר לי שאני עם ביטוח מסובסד. אחרי הבדיקה, הועברתי לפוליסה זהה בחצי המחיר."</p>
+        <div class="name">אבי מ.</div>
+        <div class="city">ירושלים</div>
+      </div>
+      <div class="testimonial">
+        <div class="savings-badge">חסכנו ₪19 בחודש</div>
+        <div class="stars">★★★★★</div>
+        <p>"הכל נעשה בלי שנאלצתי לעשות כלום בעצמי. השארתי פרטים באתר, חזרו אליי וסגרנו עניין במהירות."</p>
+        <div class="name">מיכל ד.</div>
+        <div class="city">בני ברק</div>
+      </div>
+    </div>
+
+    <div class="hidden-testimonials" id="moreTestimonials">
+      <div class="testimonial">
+        <div class="savings-badge">חסכנו ₪54 בחודש</div>
+        <div class="stars">★★★★★</div>
+        <p>"שילמנו מחיר מופרז במשך שנים בלי לדעת בכלל. הבדיקה גילתה שאפשר לחתוך את העלויות כמעט בחצי, חיסכון של מעל 15,000 שקל!"</p>
+        <div class="name">ישראל ו.</div>
+        <div class="city">בני ברק</div>
+      </div>
+      <div class="testimonial">
+        <div class="savings-badge">חסכנו ₪38 בחודש</div>
+        <div class="stars">★★★★★</div>
+        <p>"הייתי בטוח שאין מה לגעת בביטוח הקיים. השארתי שם וטלפון, ותוך יום חזרו אליי עם הצעה שחוסכת לי קרוב ל-500 שקלים בכל שנה."</p>
+        <div class="name">שמואל ק.</div>
+        <div class="city">מודיעין עילית</div>
+      </div>
+      <div class="testimonial">
+        <div class="savings-badge">חסכנו ₪62 בחודש</div>
+        <div class="stars">★★★★★</div>
+        <p>"פשוט לא להאמין כמה כסף סתם זרקנו לחברת הביטוח הישנה. השירות היה מהיר, מקצועי ובלי כאבי ראש בכלל."</p>
+        <div class="name">חיים ס.</div>
+        <div class="city">אלעד</div>
+      </div>
+    </div>
+
+    <div class="toggle-btn-container">
+      <button type="button" class="btn-toggle" id="toggleBtn" onclick="toggleTestimonials()">צפה בעוד סיפורי הצלחה ↓</button>
+    </div>
+
+    <div class="feedback-box">
+      <h3>השאירו לנו משוב חם</h3>
+      <form class="feedback-form" onsubmit="handleFeedbackSubmit(event)">
+        <input type="text" id="fb-name" placeholder="שמכם המלא" required>
+        <input type="text" id="fb-city" placeholder="עיר מגורים" required>
+        <textarea id="fb-text" placeholder="מה יש לכם לספר על השירות שלנו?" required></textarea>
+        <button type="submit" id="fbSubmitBtn" class="feedback-btn">שלח משוב לעדכון באתר</button>
+        <div id="fbStatus" class="form-status"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
 <section class="contact-section">
   <div class="container">
     <h2>מוכנים לדעת כמה תחסכו?</h2>
     <p>הבדיקה חינם, לוקחת דקות. חבל על כל חודש שעובר.</p>
     <div class="contact-cards">
-      <a class="contact-card class-mail-cta">
-        <div class="icon">📧</div>
-        <div class="type">מייל</div>
-        <div class="value">שלח "בדיקה"</div>
-      </a>
+      <button onclick="scrollToForm()" class="contact-card" style="border:none; color:inherit; font-family:inherit; text-align:center;">
+        <div class="icon">📝</div>
+        <div class="type">דיגיטלי מהיר</div>
+        <div class="value">מילוי פרטים באתר</div>
+      </button>
       <a href="tel:0733021404" class="contact-card">
         <div class="icon">📞</div>
-        <div class="type">תא קולי</div>
-        <div class="value">073-3021404</div>
+        <div class="type">תא קולי 24/6</div>
+        <div class="value">0733-021-404</div>
       </a>
     </div>
     <p class="contact-note">הבדיקה לוקחת <strong>דקות בודדות</strong>.<br>החיסכון נשאר אצלכם <strong>שנים</strong>.</p>
   </div>
 </section>
+
+<div class="bottom-form-wrapper" id="leadFormWrapper">
+  <div class="bg-circle-bottom"></div>
+  <div class="lead-form-container" id="leadFormSection">
+    <h3>טופס בדיקה דיגיטלי</h3>
+    <p>מלאו פרטים קצרים והנתונים יישלחו אלינו ישירות לבדיקה</p>
+    <form class="main-form" onsubmit="handleFormSubmit(event)">
+      <div class="form-group">
+        <label for="userName">שם מלא:</label>
+        <input type="text" id="userName" placeholder="ישראל ישראלי" required>
+      </div>
+      <div class="form-group">
+        <label for="userPhone">מספר טלפון:</label>
+        <input type="tel" id="userPhone" placeholder="0501234567" pattern="[0-9]{9,10}" title="נא להזין מספר טלפון תקין" required>
+      </div>
+      <button type="submit" id="submitBtn" class="form-submit-btn">שלח לבדיקה מקצועית ←</button>
+      <div id="formStatus" class="form-status"></div>
+    </form>
+  </div>
+</div>
 
 <footer>
   <p>© 2025 | ביטוח חיים למשכנתא | כל הזכויות שמורות</p>
@@ -790,33 +902,118 @@
 
 <div class="sticky-bar">
   <span>9/10 פוליסות — <b>מצאנו חיסכון</b></span>
-  <a class="sticky-btn class-mail-cta">שלח "בדיקה" חינם ←</a>
+  <button onclick="scrollToForm()" class="sticky-btn">בדיקת פוליסה בטופס ←</button>
 </div>
 
 <script>
-  function getMailUrl(subject, body) {
-    const toEmail = "z7621752@gmail.com";
-    const encodedSubject = encodeURIComponent(subject || "בדיקה");
-    const encodedBody = body ? encodeURIComponent(body) : "";
-    
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    
-    if (isMobile) {
-      return "mailto:" + toEmail + "?subject=" + encodedSubject + (encodedBody ? "&body=" + encodedBody : "");
-    } else {
-      return "https://mail.google.com/mail/?view=cm&fs=1&to=" + toEmail + "&su=" + encodedSubject + (encodedBody ? "&body=" + encodedBody : "");
+  const forminitEndpoint = "https://forminit.com/f/96f2fbhwwcfv";
+
+  function scrollToForm() {
+    const element = document.getElementById("leadFormSection");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "center" });
+      setTimeout(() => { document.getElementById("userName").focus(); }, 500);
     }
   }
 
-  function handleMailCtaClick(e) {
+  function handleFormSubmit(e) {
     e.preventDefault();
-    const url = getMailUrl("בדיקה", "");
     
-    if (url.startsWith("http")) {
-      window.open(url, "_blank");
-    } else {
-      window.location.href = url;
-    }
+    const submitBtn = document.getElementById('submitBtn');
+    const statusDiv = document.getElementById('formStatus');
+    
+    const name = document.getElementById('userName').value;
+    const phone = document.getElementById('userPhone').value;
+    const price = document.getElementById('currPrice').value;
+    const years = document.getElementById('yearsLeft').value;
+    const saveMonth = document.getElementById('save-month').textContent;
+    const saveTotal = document.getElementById('save-total').textContent;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "שולח נתונים לבדיקה...";
+
+    const data = {
+      "שם מלא": name,
+      "מספר טלפון": phone,
+      "תשלום חודשי נוכחי": "₪" + price,
+      "שנים שנותרו למשכנתא": years,
+      "צפי חיסכון חודשי": saveMonth,
+      "צפי חיסכון כולל": saveTotal
+    };
+
+    fetch(forminitEndpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(data)
+    })
+    .then(response => {
+      if (response.ok) {
+        statusDiv.style.color = "#4caf7d";
+        statusDiv.textContent = "הפרטים נשלחו בהצלחה! נחזור אליכם בהקדם.";
+        document.getElementById('userName').value = "";
+        document.getElementById('userPhone').value = "";
+      } else {
+        statusDiv.style.color = "#ff4d4d";
+        statusDiv.textContent = "אירעה תקלה בשליחה. אנא נסו שוב או פנו למוקד הטלפוני.";
+      }
+    })
+    .catch(error => {
+      statusDiv.style.color = "#ff4d4d";
+      statusDiv.textContent = "שגיאת רשת. אנא ודאו חיבור לאינטרנט ונסו שוב.";
+    })
+    .finally(() => {
+      statusDiv.style.display = "block";
+      submitBtn.disabled = false;
+      submitBtn.textContent = "שלח לבדיקה מקצועית ←";
+    });
+  }
+
+  function handleFeedbackSubmit(e) {
+    e.preventDefault();
+    
+    const submitBtn = document.getElementById('fbSubmitBtn');
+    const statusDiv = document.getElementById('fbStatus');
+    
+    const name = document.getElementById('fb-name').value;
+    const city = document.getElementById('fb-city').value;
+    const text = document.getElementById('fb-text').value;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "שולח...";
+
+    const data = {
+      "סוג הטופס": "משוב לקוח מהאתר",
+      "שם הלקוח": name,
+      "עיר": city,
+      "תוכן המשוב": text
+    };
+
+    fetch(forminitEndpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(data)
+    })
+    .then(response => {
+      if (response.ok) {
+        statusDiv.style.color = "#4caf7d";
+        statusDiv.textContent = "המשוב נשלח בהצלחה, תודה רבה!";
+        document.getElementById('fb-name').value = "";
+        document.getElementById('fb-city').value = "";
+        document.getElementById('fb-text').value = "";
+      } else {
+        statusDiv.style.color = "#ff4d4d";
+        statusDiv.textContent = "אירעה תקלה. נא לנסות שוב.";
+      }
+    })
+    .catch(() => {
+      statusDiv.style.color = "#ff4d4d";
+      statusDiv.textContent = "שגיאת תקשורת.";
+    })
+    .finally(() => {
+      statusDiv.style.display = "block";
+      submitBtn.disabled = false;
+      submitBtn.textContent = "שלח משוב לעדכון באתר";
+    });
   }
 
   function update() {
@@ -834,13 +1031,6 @@
     document.getElementById('save-month').textContent = '₪' + monthly.toLocaleString();
     document.getElementById('save-year').textContent = '₪' + yearly.toLocaleString();
     document.getElementById('save-total').textContent = '₪' + total.toLocaleString();
-
-    const mailLink = document.getElementById('mailLink');
-    mailLink.onclick = function(e) {
-      e.preventDefault();
-      const url = getMailUrl("בדיקה", "");
-      if (url.startsWith("http")) { window.open(url, "_blank"); } else { window.location.href = url; }
-    };
   }
 
   function toggleTestimonials() {
@@ -855,26 +1045,6 @@
       btn.textContent = "הסתר תגובות ↑";
     }
   }
-
-  function sendFeedback() {
-    const name = document.getElementById('fb-name').value;
-    const city = document.getElementById('fb-city').value;
-    const text = document.getElementById('fb-text').value;
-    
-    const subject = "משוב לקוח חדש מהאתר";
-    const body = "שם: " + name + "\nעיר: " + city + "\nמשוב: " + text;
-    
-    const url = getMailUrl(subject, body);
-    if (url.startsWith("http")) {
-      window.open(url, "_blank");
-    } else {
-      window.location.href = url;
-    }
-  }
-
-  document.querySelectorAll('.class-mail-cta').forEach(function(element) {
-    element.addEventListener('click', handleMailCtaClick);
-  });
 
   document.getElementById('currPrice').addEventListener('input', update);
   document.getElementById('yearsLeft').addEventListener('input', update);
