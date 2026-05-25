@@ -546,6 +546,8 @@
   }
   .contact-section h2 { font-size: clamp(24px, 4vw, 36px); font-weight: 900; letter-spacing: -0.5px; margin-bottom: 12px; position: relative; }
   .contact-section p { font-size: 17px; color: rgba(255,255,255,0.8); margin-bottom: 30px; position: relative; }
+  .contact-section h2 { font-size: clamp(24px, 4vw, 36px); font-weight: 900; letter-spacing: -0.5px; margin-bottom: 12px; position: relative; }
+  .contact-section p { font-size: 17px; color: rgba(255,255,255,0.8); margin-bottom: 30px; position: relative; }
   .contact-cards { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px; position: relative; }
   .contact-card {
     background: rgba(255,255,255,0.12);
@@ -596,7 +598,7 @@
     <div class="logo">ביטוח <span>חכם</span> למשכנתא</div>
     <div class="logo-sub">מבית <span>אבי ביטוחים</span> | 052-7621752</div>
   </div>
-  <button class="header-cta" onclick="scrollToForm()">לבדיקת הוזלה חינם ←</button>
+  <button class="header-cta" onclick="scrollToForm()">לבדיקת התאמה חינם ←</button>
 </header>
 
 <section class="hero">
@@ -906,7 +908,7 @@
 </div>
 
 <script>
-  // עודכן כאן לכתובת היעד המדויקת של פורמיניט (forminit) כפי שמופיע בצילום המסך שלכם
+  // מזהה הטופס הרשמי שלכם בפורמיניט
   const forminitEndpoint = "https://forminit.com/submit/96f2fbhwwcfv";
 
   function scrollToForm() {
@@ -933,19 +935,19 @@
     submitBtn.disabled = true;
     submitBtn.textContent = "שולח נתונים לבדיקה...";
 
-    const data = {
-      "שם מלא": name,
-      "מספר טלפון": phone,
-      "תשלום חודשי נוכחי": "₪" + price,
-      "שנים שנותרו למשכנתא": years,
-      "צפי חיסכון חודשי": saveMonth,
-      "צפי חיסכון כולל": saveTotal
-    };
+    // המרה למבנה FormData תקין שפורמיניט יודעת לקרוא
+    const formData = new FormData();
+    formData.append("שם מלא", name);
+    formData.append("מספר טלפון", phone);
+    formData.append("תשלום חודשי נוכחי", "₪" + price);
+    formData.append("שנים שנותרו למשכנתא", years);
+    formData.append("צפי חיסכון חודשי", saveMonth);
+    formData.append("צפי חיסכון כולל", saveTotal);
 
     fetch(forminitEndpoint, {
       method: "POST",
-      headers: { "Content-Type": "application/json", "Accept": "application/json" },
-      body: JSON.stringify(data)
+      headers: { "Accept": "application/json" },
+      body: formData
     })
     .then(response => {
       if (response.ok) {
@@ -960,7 +962,7 @@
     })
     .catch(error => {
       statusDiv.style.color = "#ff4d4d";
-      statusDiv.textContent = "שגיאת רשת. אנא ודאו חיבור לאינטרנט ונסו שוב.";
+      statusDiv.textContent = "אירעה תקלה בתקשורת. אנא נסו שוב.";
     })
     .finally(() => {
       statusDiv.style.display = "block";
@@ -982,17 +984,17 @@
     submitBtn.disabled = true;
     submitBtn.textContent = "שולח...";
 
-    const data = {
-      "סוג הטופס": "משוב לקוח מהאתר",
-      "שם הלקוח": name,
-      "עיר": city,
-      "תוכן המשוב": text
-    };
+    // התאמת טופס המשוב לפורמט FormData
+    const formData = new FormData();
+    formData.append("סוג הטופס", "משוב לקוח מהאתר");
+    formData.append("שם הלקוח", name);
+    formData.append("עיר", city);
+    formData.append("תוכן המשוב", text);
 
     fetch(forminitEndpoint, {
       method: "POST",
-      headers: { "Content-Type": "application/json", "Accept": "application/json" },
-      body: JSON.stringify(data)
+      headers: { "Accept": "application/json" },
+      body: formData
     })
     .then(response => {
       if (response.ok) {
