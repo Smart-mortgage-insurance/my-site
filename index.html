@@ -341,13 +341,6 @@
   .form-submit-btn:hover {
     background: var(--red-dark);
   }
-  .form-status {
-    font-size: 14px;
-    font-weight: 700;
-    text-align: center;
-    margin-top: 10px;
-    display: none;
-  }
 
   .trust-bar {
     background: var(--white);
@@ -544,8 +537,6 @@
     background: linear-gradient(170deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
     background-size: 100% 200%; animation: shimmer 4s infinite linear; pointer-events: none;
   }
-  .contact-section h2 { font-size: clamp(24px, 4vw, 36px); font-weight: 900; letter-spacing: -0.5px; margin-bottom: 12px; position: relative; }
-  .contact-section p { font-size: 17px; color: rgba(255,255,255,0.8); margin-bottom: 30px; position: relative; }
   .contact-section h2 { font-size: clamp(24px, 4vw, 36px); font-weight: 900; letter-spacing: -0.5px; margin-bottom: 12px; position: relative; }
   .contact-section p { font-size: 17px; color: rgba(255,255,255,0.8); margin-bottom: 30px; position: relative; }
   .contact-cards { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px; position: relative; }
@@ -847,12 +838,12 @@
 
     <div class="feedback-box">
       <h3>השאירו לנו משוב חם</h3>
-      <form class="feedback-form" onsubmit="handleFeedbackSubmit(event)">
-        <input type="text" id="fb-name" placeholder="שמכם המלא" required>
-        <input type="text" id="fb-city" placeholder="עיר מגורים" required>
-        <textarea id="fb-text" placeholder="מה יש לכם לספר על השירות שלנו?" required></textarea>
-        <button type="submit" id="fbSubmitBtn" class="feedback-btn">שלח משוב לעדכון באתר</button>
-        <div id="fbStatus" class="form-status"></div>
+      <form class="feedback-form" action="https://forminit.com/submit/96f2fbhwwcfv" method="POST">
+        <input type="hidden" name="סוג הטופס" value="משוב לקוח מהאתר">
+        <input type="text" name="שם הלקוח" placeholder="שמכם המלא" required>
+        <input type="text" name="עיר" placeholder="עיר מגורים" required>
+        <textarea name="תוכן המשוב" placeholder="מה יש לכם לספר על השירות שלנו?" required></textarea>
+        <button type="submit" class="feedback-btn">שלח משוב לעדכון באתר</button>
       </form>
     </div>
   </div>
@@ -883,17 +874,22 @@
   <div class="lead-form-container" id="leadFormSection">
     <h3>טופס בדיקה דיגיטלי</h3>
     <p>מלאו פרטים קצרים והנתונים יישלחו אלינו ישירות לבדיקה</p>
-    <form class="main-form" onsubmit="handleFormSubmit(event)">
+    
+    <form class="main-form" action="https://forminit.com/submit/96f2fbhwwcfv" method="POST" onsubmit="injectCalcValues()">
+      <input type="hidden" name="תשלום חודשי נוכחי" id="hidden_price" value="">
+      <input type="hidden" name="שנים שנותרו למשכנתא" id="hidden_years" value="">
+      <input type="hidden" name="צפי חיסכון חודשי" id="hidden_save_month" value="">
+      <input type="hidden" name="צפי חיסכון כולל" id="hidden_save_total" value="">
+
       <div class="form-group">
-        <label for="userName">שם מלא:</label>
-        <input type="text" id="userName" placeholder="ישראל ישראלי" required>
+        <label>שם מלא:</label>
+        <input type="text" name="שם מלא" placeholder="ישראל ישראלי" required>
       </div>
       <div class="form-group">
-        <label for="userPhone">מספר טלפון:</label>
-        <input type="tel" id="userPhone" placeholder="0501234567" pattern="[0-9]{9,10}" title="נא להזין מספר טלפון תקין" required>
+        <label>מספר טלפון:</label>
+        <input type="tel" name="מספר טלפון" placeholder="0501234567" pattern="[0-9]{9,10}" title="נא להזין מספר טלפון תקין" required>
       </div>
-      <button type="submit" id="submitBtn" class="form-submit-btn">שלח לבדיקה מקצועית ←</button>
-      <div id="formStatus" class="form-status"></div>
+      <button type="submit" class="form-submit-btn">שלח לבדיקה מקצועית ←</button>
     </form>
   </div>
 </div>
@@ -908,115 +904,19 @@
 </div>
 
 <script>
-  // מזהה הטופס הרשמי שלכם בפורמיניט
-  const forminitEndpoint = "https://forminit.com/submit/96f2fbhwwcfv";
-
   function scrollToForm() {
     const element = document.getElementById("leadFormSection");
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "center" });
-      setTimeout(() => { document.getElementById("userName").focus(); }, 500);
     }
   }
 
-  function handleFormSubmit(e) {
-    e.preventDefault();
-    
-    const submitBtn = document.getElementById('submitBtn');
-    const statusDiv = document.getElementById('formStatus');
-    
-    const name = document.getElementById('userName').value;
-    const phone = document.getElementById('userPhone').value;
-    const price = document.getElementById('currPrice').value;
-    const years = document.getElementById('yearsLeft').value;
-    const saveMonth = document.getElementById('save-month').textContent;
-    const saveTotal = document.getElementById('save-total').textContent;
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = "שולח נתונים לבדיקה...";
-
-    // המרה למבנה FormData תקין שפורמיניט יודעת לקרוא
-    const formData = new FormData();
-    formData.append("שם מלא", name);
-    formData.append("מספר טלפון", phone);
-    formData.append("תשלום חודשי נוכחי", "₪" + price);
-    formData.append("שנים שנותרו למשכנתא", years);
-    formData.append("צפי חיסכון חודשי", saveMonth);
-    formData.append("צפי חיסכון כולל", saveTotal);
-
-    fetch(forminitEndpoint, {
-      method: "POST",
-      headers: { "Accept": "application/json" },
-      body: formData
-    })
-    .then(response => {
-      if (response.ok) {
-        statusDiv.style.color = "#4caf7d";
-        statusDiv.textContent = "הפרטים נשלחו בהצלחה! נחזור אליכם בהקדם.";
-        document.getElementById('userName').value = "";
-        document.getElementById('userPhone').value = "";
-      } else {
-        statusDiv.style.color = "#ff4d4d";
-        statusDiv.textContent = "אירעה תקלה בשליחה. אנא נסו שוב או פנו למוקד הטלפוני.";
-      }
-    })
-    .catch(error => {
-      statusDiv.style.color = "#ff4d4d";
-      statusDiv.textContent = "אירעה תקלה בתקשורת. אנא נסו שוב.";
-    })
-    .finally(() => {
-      statusDiv.style.display = "block";
-      submitBtn.disabled = false;
-      submitBtn.textContent = "שלח לבדיקה מקצועית ←";
-    });
-  }
-
-  function handleFeedbackSubmit(e) {
-    e.preventDefault();
-    
-    const submitBtn = document.getElementById('fbSubmitBtn');
-    const statusDiv = document.getElementById('fbStatus');
-    
-    const name = document.getElementById('fb-name').value;
-    const city = document.getElementById('fb-city').value;
-    const text = document.getElementById('fb-text').value;
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = "שולח...";
-
-    // התאמת טופס המשוב לפורמט FormData
-    const formData = new FormData();
-    formData.append("סוג הטופס", "משוב לקוח מהאתר");
-    formData.append("שם הלקוח", name);
-    formData.append("עיר", city);
-    formData.append("תוכן המשוב", text);
-
-    fetch(forminitEndpoint, {
-      method: "POST",
-      headers: { "Accept": "application/json" },
-      body: formData
-    })
-    .then(response => {
-      if (response.ok) {
-        statusDiv.style.color = "#4caf7d";
-        statusDiv.textContent = "המשוב נשלח בהצלחה, תודה רבה!";
-        document.getElementById('fb-name').value = "";
-        document.getElementById('fb-city').value = "";
-        document.getElementById('fb-text').value = "";
-      } else {
-        statusDiv.style.color = "#ff4d4d";
-        statusDiv.textContent = "אירעה תקלה. נא לנסות שוב.";
-      }
-    })
-    .catch(() => {
-      statusDiv.style.color = "#ff4d4d";
-      statusDiv.textContent = "שגיאת תקשורת.";
-    })
-    .finally(() => {
-      statusDiv.style.display = "block";
-      submitBtn.disabled = false;
-      submitBtn.textContent = "שלח משוב לעדכון באתר";
-    });
+  // פונקציה שמזריקה את ערכי המחשבון העדכניים לתוך הטופס רגע לפני השליחה לשרת
+  function injectCalcValues() {
+    document.getElementById('hidden_price').value = "₪" + document.getElementById('currPrice').value;
+    document.getElementById('hidden_years').value = document.getElementById('yearsLeft').value;
+    document.getElementById('hidden_save_month').value = document.getElementById('save-month').textContent;
+    document.getElementById('hidden_save_total').value = document.getElementById('save-total').textContent;
   }
 
   function update() {
