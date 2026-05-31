@@ -627,53 +627,6 @@
   </div>
 </section>
 
-<section class="calc-section">
-  <div class="container">
-    <div class="section-label">כמה תחסכו?</div>
-    <h2 class="section-title">מחשבון חיסכון מהיר (35% הנחה)</h2>
-    <div class="calc-box">
-      <div class="calc-header">
-        <h3>בדקו כמה כסף נשאר אצלכם בכיס</h3>
-      </div>
-      
-      <div class="calc-row">
-        <label>כמה אתם משלמים היום בחודש?</label>
-        <input type="range" id="currPrice" min="30" max="500" value="100">
-        <div class="val-display"><span id="currPrice-lbl">₪100</span></div>
-      </div>
-
-      <div class="calc-row">
-        <label>כמה שנים נשארו למשכנתא?</label>
-        <input type="range" id="yearsLeft" min="1" max="35" value="20">
-        <div class="val-display"><span id="yearsLeft-lbl">20 שנה</span></div>
-      </div>
-
-      <div class="calc-result">
-        <div class="res-grid">
-          <div class="res-item">
-            <span>חיסכון חודשי</span>
-            <strong id="save-month">₪35</strong>
-          </div>
-          <div class="res-item">
-            <span>חיסכון שנתי</span>
-            <strong id="save-year">₪420</strong>
-          </div>
-          <div class="res-item full">
-            <span>חיסכון כולל לכל התקופה</span>
-            <strong id="save-total">₪8,400</strong>
-          </div>
-        </div>
-      </div>
-      
-      <button onclick="scrollToForm()" class="btn-primary" style="display:block; width:100%; text-align:center; margin-top:10px; border:none; padding:8px; font-size:15px;">אני רוצה לבדוק זכאות להנחה ←</button>
-      
-      <p class="calc-disclaimer">
-        * הנתונים מבוססים על ממוצע חיסכון של 35% ומהווים הערכה בלבד. גובה החיסכון בכפוף לבדיקה פרטנית של תנאי הפוליסה, גיל ומצב בריאותי.
-      </p>
-    </div>
-  </div>
-</section>
-
 <div class="trust-bar">
   <span><span class="dot"></span> בדיקה חינם ללא עלות</span>
   <span><span class="dot"></span> אבטחה מלאה</span>
@@ -770,6 +723,53 @@
           <p>לא גובים עמלה מהלקוח — אתם מרוויחים הכל.</p>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="calc-section">
+  <div class="container">
+    <div class="section-label">כמה תחסכו?</div>
+    <h2 class="section-title">מחשבון חיסכון מהיר (35% הנחה)</h2>
+    <div class="calc-box">
+      <div class="calc-header">
+        <h3>בדקו כמה כסף נשאר אצלכם בכיס</h3>
+      </div>
+      
+      <div class="calc-row">
+        <label>כמה אתם משלמים היום בחודש?</label>
+        <input type="range" id="currPrice" min="15" max="500" value="100">
+        <div class="val-display"><span id="currPrice-lbl">₪100</span></div>
+      </div>
+
+      <div class="calc-row">
+        <label>כמה שנים נשארו למשכנתא?</label>
+        <input type="range" id="yearsLeft" min="1" max="30" value="20">
+        <div class="val-display"><span id="yearsLeft-lbl">20 שנה</span></div>
+      </div>
+
+      <div class="calc-result">
+        <div class="res-grid">
+          <div class="res-item">
+            <span>חיסכון חודשי</span>
+            <strong id="save-month">₪35</strong>
+          </div>
+          <div class="res-item">
+            <span>חיסכון שנתי</span>
+            <strong id="save-year">₪420</strong>
+          </div>
+          <div class="res-item full">
+            <span>חיסכון כולל לכל התקופה</span>
+            <strong id="save-total">₪8,400</strong>
+          </div>
+        </div>
+      </div>
+      
+      <button onclick="scrollToForm()" class="btn-primary" style="display:block; width:100%; text-align:center; margin-top:10px; border:none; padding:8px; font-size:15px;">אני רוצה לבדוק זכאות להנחה ←</button>
+      
+      <p class="calc-disclaimer">
+        * הנתונים מבוססים על ממוצע חיסכון של 35% ומהווים הערכה בלבד. גובה החיסכון בכפוף לבדיקה פרטנית של תנאי הפוליסה, גיל ומצב בריאותי.
+      </p>
     </div>
   </div>
 </section>
@@ -872,12 +872,8 @@
     <h3>טופס בדיקה דיגיטלי</h3>
     <p>מלאו פרטים קצרים והנתונים יישלחו אלינו ישירות לבדיקה</p>
     
-    <form class="main-form" action="https://api.web3forms.com/submit" method="POST" onsubmit="injectCalcValues()">
+    <form class="main-form" action="https://api.web3forms.com/submit" method="POST">
       <input type="hidden" name="access_key" value="4edea9e2-47fb-4fa3-a1f9-9b90937a4703">
-      <input type="hidden" name="תשלום חודשי נוכחי" id="hidden_price" value="">
-      <input type="hidden" name="שנים שנותרו למשכנתא" id="hidden_years" value="">
-      <input type="hidden" name="צפי חיסכון חודשי" id="hidden_save_month" value="">
-      <input type="hidden" name="צפי חיסכון כולל" id="hidden_save_total" value="">
 
       <div class="form-group">
         <label>שם מלא:</label>
@@ -886,6 +882,10 @@
       <div class="form-group">
         <label>מספר טלפון:</label>
         <input type="tel" name="מספר טלפון" placeholder="0501234567" pattern="[0-9]{9,10}" title="נא להזין מספר טלפון תקין" required>
+      </div>
+      <div class="form-group">
+        <label>יתרת משכנתא משוערת: <span style="font-weight:400; color:var(--muted);">(אופציונלי)</span></label>
+        <input type="text" name="יתרת משכנתא משוערת" placeholder="לדוגמה: 800,000 ₪">
       </div>
       <button type="submit" class="form-submit-btn">שלח לבדיקה מקצועית ←</button>
     </form>
@@ -907,13 +907,6 @@
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "center" });
     }
-  }
-
-  function injectCalcValues() {
-    document.getElementById('hidden_price').value = "₪" + document.getElementById('currPrice').value;
-    document.getElementById('hidden_years').value = document.getElementById('yearsLeft').value;
-    document.getElementById('hidden_save_month').value = document.getElementById('save-month').textContent;
-    document.getElementById('hidden_save_total').value = document.getElementById('save-total').textContent;
   }
 
   function update() {
