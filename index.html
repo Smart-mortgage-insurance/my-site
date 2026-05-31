@@ -11,7 +11,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-1QG5097HFX');
 </script>
 
@@ -19,213 +18,45 @@
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght=300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --red: #b8952a;
-    --red-dark: #8a6e1e;
-    --red-light: #f5e9c8;
-    --gold: #D4AC0D;
-    --gold-light: #FEF9E7;
-    --dark: #1a2236;
-    --mid: #444;
-    --muted: #777;
-    --border: #E0E0E0;
-    --bg: #FAFAF8;
-    --white: #FFFFFF;
-    --green: #4caf7d;
-    --green-light: #d4f5e5;
-    --radius: 12px;
+    --red: #b8952a; --red-dark: #8a6e1e; --red-light: #f5e9c8;
+    --gold: #D4AC0D; --gold-light: #FEF9E7; --dark: #1a2236;
+    --mid: #444; --muted: #777; --border: #E0E0E0; --bg: #FAFAF8;
+    --white: #FFFFFF; --green: #4caf7d; --green-light: #d4f5e5; --radius: 12px;
   }
-
-  body {
-    font-family: 'Heebo', sans-serif;
-    background: var(--bg);
-    color: var(--dark);
-    line-height: 1.6;
-    font-size: 16px;
-    overflow-x: hidden;
-    padding-bottom: 60px;
-  }
-
+  body { font-family: 'Heebo', sans-serif; background: var(--bg); color: var(--dark); line-height: 1.6; font-size: 16px; overflow-x: hidden; padding-bottom: 60px; }
   a { color: inherit; text-decoration: none; cursor: pointer; }
-
   @keyframes shimmer { 0%{background-position:0 200%;} 100%{background-position:0 -200%;} }
   @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-12px);} }
   @keyframes pc { 0%,100%{transform:scale(1);} 50%{transform:scale(1.15);} }
-
-  header {
-    background: var(--dark);
-    color: #fff;
-    padding: 12px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    z-index: 10;
-  }
-  .logo-container {
-    display: flex;
-    flex-direction: column;
-  }
-  .logo {
-    font-size: 17px;
-    font-weight: 700;
-    letter-spacing: -0.3px;
-    line-height: 1.2;
-  }
+  header { background: var(--dark); color: #fff; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 10; }
+  .logo-container { display: flex; flex-direction: column; }
+  .logo { font-size: 17px; font-weight: 700; letter-spacing: -0.3px; line-height: 1.2; }
   .logo span { color: var(--gold); }
-  .logo-sub {
-    font-size: 11px;
-    color: rgba(255, 255, 255, 0.65);
-    margin-top: 2px;
-    font-weight: 400;
-  }
-  .logo-sub span {
-    color: var(--gold);
-    font-weight: 500;
-  }
-  .header-cta {
-    background: var(--red);
-    color: #fff;
-    padding: 9px 20px;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 700;
-    transition: background 0.2s;
-  }
+  .logo-sub { font-size: 11px; color: rgba(255,255,255,0.65); margin-top: 2px; font-weight: 400; }
+  .logo-sub span { color: var(--gold); font-weight: 500; }
+  .header-cta { background: var(--red); color: #fff; padding: 9px 20px; border-radius: 6px; font-size: 14px; font-weight: 700; transition: background 0.2s; }
   .header-cta:hover { background: var(--red-dark); }
-
-  .hero {
-    background: linear-gradient(170deg, #1e2a40 0%, var(--dark) 55%, #141c2e 100%);
-    color: #fff;
-    padding: 72px 24px 60px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(170deg, transparent 30%, rgba(255,255,255,0.05) 50%, transparent 70%);
-    background-size: 100% 200%;
-    animation: shimmer 3.5s infinite linear;
-    pointer-events: none;
-  }
-
+  .hero { background: linear-gradient(170deg, #1e2a40 0%, var(--dark) 55%, #141c2e 100%); color: #fff; padding: 72px 24px 60px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(170deg, transparent 30%, rgba(255,255,255,0.05) 50%, transparent 70%); background-size: 100% 200%; animation: shimmer 3.5s infinite linear; pointer-events: none; }
   .c1 { position:absolute; width:340px; height:340px; border-radius:50%; background:rgba(184,149,42,0.1); top:-80px; right:-80px; animation:pc 3.5s ease-in-out infinite; }
   .c2 { position:absolute; width:260px; height:260px; border-radius:50%; background:rgba(76,175,125,0.08); bottom:-100px; left:-60px; animation:pc 3.5s ease-in-out infinite 1.1s; }
-
-  .hero-badge {
-    display: inline-block;
-    background: var(--red);
-    color: #fff;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    padding: 5px 14px;
-    border-radius: 20px;
-    margin-bottom: 22px;
-    text-transform: uppercase;
-    position: relative; z-index: 2;
-  }
-
-  .hero-shield {
-    width: 60px; height: 60px;
-    margin: 0 auto 20px;
-    display: block;
-    animation: float 2.6s ease-in-out infinite;
-    position: relative; z-index: 2;
-  }
-
-  .hero h1 {
-    font-size: clamp(28px, 5vw, 52px);
-    font-weight: 900;
-    line-height: 1.2;
-    margin-bottom: 16px;
-    letter-spacing: -1px;
-    position: relative; z-index: 2;
-  }
+  .hero-badge { display: inline-block; background: var(--red); color: #fff; font-size: 12px; font-weight: 700; letter-spacing: 0.5px; padding: 5px 14px; border-radius: 20px; margin-bottom: 22px; text-transform: uppercase; position: relative; z-index: 2; }
+  .hero-shield { width: 60px; height: 60px; margin: 0 auto 20px; display: block; animation: float 2.6s ease-in-out infinite; position: relative; z-index: 2; }
+  .hero h1 { font-size: clamp(28px, 5vw, 52px); font-weight: 900; line-height: 1.2; margin-bottom: 16px; letter-spacing: -1px; position: relative; z-index: 2; }
   .hero h1 .accent { color: var(--gold); }
-  .hero p.subtitle {
-    font-size: clamp(16px, 2.5vw, 20px);
-    color: rgba(255,255,255,0.75);
-    max-width: 540px;
-    margin: 0 auto 36px;
-    position: relative; z-index: 2;
-  }
-  .hero-stats {
-    display: flex;
-    justify-content: center;
-    gap: 32px;
-    flex-wrap: wrap;
-    margin-bottom: 42px;
-    position: relative; z-index: 2;
-  }
-  .hero-stats { text-align: center; }
-  .hero-stat .num {
-    display: block;
-    font-size: 36px;
-    font-weight: 900;
-    color: var(--gold);
-    line-height: 1;
-  }
-  .hero-stat .label {
-    font-size: 13px;
-    color: rgba(255,255,255,0.6);
-    margin-top: 4px;
-  }
-  .hero-divider {
-    width: 1px;
-    background: rgba(255,255,255,0.15);
-    height: 48px;
-    align-self: center;
-  }
-  .cta-group {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-    position: relative; z-index: 2;
-  }
-  .btn-primary {
-    background: var(--red);
-    color: #fff;
-    padding: 14px 28px;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    border: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(184,149,42,0.3);
-  }
+  .hero p.subtitle { font-size: clamp(16px, 2.5vw, 20px); color: rgba(255,255,255,0.75); max-width: 540px; margin: 0 auto 36px; position: relative; z-index: 2; }
+  .hero-stats { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; margin-bottom: 42px; position: relative; z-index: 2; text-align: center; }
+  .hero-stat .num { display: block; font-size: 36px; font-weight: 900; color: var(--gold); line-height: 1; }
+  .hero-stat .label { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 4px; }
+  .hero-divider { width: 1px; background: rgba(255,255,255,0.15); height: 48px; align-self: center; }
+  .cta-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 2; }
+  .btn-primary { background: var(--red); color: #fff; padding: 14px 28px; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer; border: none; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(184,149,42,0.3); }
   .btn-primary:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(184,149,42,0.4); }
-  .btn-secondary {
-    background: transparent;
-    color: #fff;
-    padding: 14px 24px;
-    border-radius: 8px;
-    font-size: 15px;
-    font-weight: 500;
-    border: 1.5px solid rgba(255,255,255,0.35);
-    cursor: pointer;
-    transition: all 0.2s;
-  }
+  .btn-secondary { background: transparent; color: #fff; padding: 14px 24px; border-radius: 8px; font-size: 15px; font-weight: 500; border: 1.5px solid rgba(255,255,255,0.35); cursor: pointer; transition: all 0.2s; }
   .btn-secondary:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.05); }
-
   .calc-section { background: var(--white); padding: 25px 24px; }
-  .calc-box { 
-    background: var(--dark); 
-    border-radius: 12px; 
-    padding: 15px; 
-    color: #fff; 
-    max-width: 440px; 
-    margin: 0 auto; 
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15); 
-    position: relative;
-    overflow: hidden;
-  }
+  .calc-box { background: var(--dark); border-radius: 12px; padding: 15px; color: #fff; max-width: 440px; margin: 0 auto; box-shadow: 0 8px 24px rgba(0,0,0,0.15); position: relative; overflow: hidden; }
   .calc-header { text-align: center; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 6px; }
   .calc-header h3 { font-size: 16px; color: var(--gold); }
   .calc-row { margin-bottom: 10px; }
@@ -239,331 +70,103 @@
   .res-item span { display: block; font-size: 11px; color: rgba(255,255,255,0.5); }
   .res-item strong { font-size: 16px; color: var(--gold); display: block; }
   .res-item.full strong { font-size: 20px; color: #4caf7d; }
-  
-  .calc-disclaimer {
-    font-size: 10px;
-    color: rgba(255,255,255,0.35);
-    margin-top: 8px;
-    line-height: 1.3;
-    text-align: center;
-  }
-
-  .bottom-form-wrapper {
-    background: linear-gradient(180deg, #1e2a40 0%, var(--dark) 100%);
-    padding: 60px 24px;
-    position: relative;
-    overflow: hidden;
-  }
-  .bottom-form-wrapper::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(170deg, transparent 30%, rgba(255,255,255,0.03) 50%, transparent 70%);
-    background-size: 100% 200%;
-    animation: shimmer 4s infinite linear;
-    pointer-events: none;
-  }
-  .bg-circle-bottom {
-    position: absolute; width: 280px; height: 280px; border-radius: 50%;
-    background: rgba(184,149,42,0.05); bottom: -60px; right: -60px;
-    animation: pc 4s ease-in-out infinite;
-  }
-
-  .lead-form-container {
-    background: var(--white);
-    border: 3px solid var(--red);
-    border-radius: var(--radius);
-    padding: 30px;
-    max-width: 470px;
-    margin: 0 auto;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.25);
-    position: relative;
-    z-index: 5;
-  }
-  .lead-form-container h3 {
-    font-size: 24px;
-    font-weight: 900;
-    text-align: center;
-    margin-bottom: 6px;
-    color: var(--dark);
-  }
-  .lead-form-container p {
-    font-size: 14px;
-    text-align: center;
-    color: var(--muted);
-    margin-bottom: 22px;
-  }
-  .main-form {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  .form-group label {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--dark);
-  }
-  .form-group input {
-    width: 100%;
-    padding: 12px 14px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-family: inherit;
-    font-size: 15px;
-    outline: none;
-    transition: border 0.2s;
-  }
-  .form-group input:focus {
-    border-color: var(--red);
-    box-shadow: 0 0 0 3px rgba(184,149,42,0.1);
-  }
-  .form-submit-btn {
-    background: var(--red);
-    color: #fff;
-    border: none;
-    padding: 14px;
-    border-radius: 8px;
-    font-size: 17px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background 0.2s;
-    text-align: center;
-    margin-top: 6px;
-    box-shadow: 0 4px 12px rgba(184,149,42,0.2);
-  }
-  .form-submit-btn:hover {
-    background: var(--red-dark);
-  }
-
-  .trust-bar {
-    background: var(--white);
-    border-bottom: 1px solid var(--border);
-    padding: 16px 24px;
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    flex-wrap: wrap;
-    font-size: 13px;
-    color: var(--muted);
-    font-weight: 500;
-  }
+  .calc-disclaimer { font-size: 10px; color: rgba(255,255,255,0.35); margin-top: 8px; line-height: 1.3; text-align: center; }
+  .bottom-form-wrapper { background: linear-gradient(180deg, #1e2a40 0%, var(--dark) 100%); padding: 60px 24px; position: relative; overflow: hidden; }
+  .bottom-form-wrapper::before { content: ''; position: absolute; inset: 0; background: linear-gradient(170deg, transparent 30%, rgba(255,255,255,0.03) 50%, transparent 70%); background-size: 100% 200%; animation: shimmer 4s infinite linear; pointer-events: none; }
+  .bg-circle-bottom { position: absolute; width: 280px; height: 280px; border-radius: 50%; background: rgba(184,149,42,0.05); bottom: -60px; right: -60px; animation: pc 4s ease-in-out infinite; }
+  .lead-form-container { background: var(--white); border: 3px solid var(--red); border-radius: var(--radius); padding: 30px; max-width: 470px; margin: 0 auto; box-shadow: 0 12px 32px rgba(0,0,0,0.25); position: relative; z-index: 5; }
+  .lead-form-container h3 { font-size: 24px; font-weight: 900; text-align: center; margin-bottom: 6px; color: var(--dark); }
+  .lead-form-container p { font-size: 14px; text-align: center; color: var(--muted); margin-bottom: 22px; }
+  .main-form { display: flex; flex-direction: column; gap: 14px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label { font-size: 14px; font-weight: 700; color: var(--dark); }
+  .form-group input { width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 15px; outline: none; transition: border 0.2s; }
+  .form-group input:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(184,149,42,0.1); }
+  .form-submit-btn { background: var(--red); color: #fff; border: none; padding: 14px; border-radius: 8px; font-size: 17px; font-weight: 700; cursor: pointer; transition: background 0.2s; text-align: center; margin-top: 6px; box-shadow: 0 4px 12px rgba(184,149,42,0.2); }
+  .form-submit-btn:hover { background: var(--red-dark); }
+  .trust-bar { background: var(--white); border-bottom: 1px solid var(--border); padding: 16px 24px; display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; font-size: 13px; color: var(--muted); font-weight: 500; }
   .trust-bar span { display: flex; align-items: center; gap: 6px; }
-  .trust-bar .dot { 
-    width: 7px; height: 7px; border-radius: 50%; background: var(--green); flex-shrink: 0;
-    animation: blink 1.8s ease-in-out infinite;
-  }
+  .trust-bar .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); flex-shrink: 0; animation: blink 1.8s ease-in-out infinite; }
   @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
-
   section { padding: 60px 24px; }
   .container { max-width: 880px; margin: 0 auto; }
-  .section-label {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 8px;
-  }
-  .section-title {
-    font-size: clamp(22px, 4vw, 34px);
-    font-weight: 900;
-    line-height: 1.25;
-    letter-spacing: -0.5px;
-    margin-bottom: 12px;
-  }
-  .section-sub {
-    font-size: 16px;
-    color: var(--muted);
-    max-width: 560px;
-    margin-bottom: 36px;
-  }
-
+  .section-label { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
+  .section-title { font-size: clamp(22px, 4vw, 34px); font-weight: 900; line-height: 1.25; letter-spacing: -0.5px; margin-bottom: 12px; }
+  .section-sub { font-size: 16px; color: var(--muted); max-width: 560px; margin-bottom: 36px; }
   .problem { background: var(--white); }
-  .problem-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-  }
-  .problem-card {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 24px;
-    transition: transform 0.3s ease;
-  }
+  .problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+  .problem-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; transition: transform 0.3s ease; }
   .problem-card:hover { transform: translateY(-5px); }
-  .problem-card .icon {
-    font-size: 28px;
-    margin-bottom: 12px;
-    display: block;
-  }
-  .problem-card h3 {
-    font-size: 17px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-  .problem-card p {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
+  .problem-card .icon { font-size: 28px; margin-bottom: 12px; display: block; }
+  .problem-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .problem-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
   .process { background: var(--bg); }
   .steps { display: flex; flex-direction: column; gap: 0; }
   .step { display: flex; gap: 24px; align-items: flex-start; position: relative; }
-  .step:not(:last-child)::after {
-    content: '';
-    position: absolute; right: 20px; top: 52px; bottom: -24px;
-    width: 2px; background: var(--border);
-  }
-  .step-num {
-    width: 42px; height: 42px; border-radius: 50%; background: var(--dark); color: #fff;
-    font-size: 16px; font-weight: 900; display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; position: relative; z-index: 1;
-  }
+  .step:not(:last-child)::after { content: ''; position: absolute; right: 20px; top: 52px; bottom: -24px; width: 2px; background: var(--border); }
+  .step-num { width: 42px; height: 42px; border-radius: 50%; background: var(--dark); color: #fff; font-size: 16px; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; z-index: 1; }
   .step-body { padding-bottom: 36px; }
   .step-body h3 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
   .step-body p { font-size: 15px; color: var(--muted); }
-
   .proof { background: var(--bg); padding-bottom: 40px; }
-  .testimonials {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 20px;
-  }
-  .testimonial {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 24px;
-    transition: all 0.3s ease;
-  }
+  .testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .testimonial { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; transition: all 0.3s ease; }
   .testimonial:hover { border-color: var(--gold); transform: scale(1.02); }
   .stars { color: var(--gold); font-size: 18px; margin-bottom: 12px; }
   .testimonial p { font-size: 15px; color: var(--mid); margin-bottom: 16px; font-style: italic; }
   .testimonial .name { font-size: 14px; font-weight: 700; }
   .testimonial .city { font-size: 13px; color: var(--muted); }
-  .savings-badge {
-    display: inline-block; background: var(--green-light); color: var(--green);
-    font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 20px; margin-bottom: 14px;
-  }
-
-  .hidden-testimonials {
-    display: none;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-  }
-  .toggle-btn-container {
-    text-align: center;
-    margin-top: 30px;
-  }
-  .btn-toggle {
-    background: transparent;
-    color: var(--dark);
-    padding: 10px 24px;
-    border-radius: 6px;
-    font-size: 15px;
-    font-weight: 700;
-    border: 2px solid var(--dark);
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .btn-toggle:hover {
-    background: var(--dark);
-    color: #fff;
-  }
-
-  .feedback-box {
-    margin-top: 40px;
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 25px;
-    max-width: 480px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+  .savings-badge { display: inline-block; background: var(--green-light); color: var(--green); font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 20px; margin-bottom: 14px; }
+  .hidden-testimonials { display: none; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 20px; }
+  .toggle-btn-container { text-align: center; margin-top: 30px; }
+  .btn-toggle { background: transparent; color: var(--dark); padding: 10px 24px; border-radius: 6px; font-size: 15px; font-weight: 700; border: 2px solid var(--dark); cursor: pointer; transition: all 0.2s; }
+  .btn-toggle:hover { background: var(--dark); color: #fff; }
+  .feedback-box { margin-top: 40px; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 25px; max-width: 480px; margin-left: auto; margin-right: auto; }
   .feedback-box h3 { font-size: 17px; font-weight: 700; margin-bottom: 12px; text-align: center; }
   .feedback-form { display: flex; flex-direction: column; gap: 10px; }
-  .feedback-form input, .feedback-form textarea {
-    width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px;
-    font-family: inherit; font-size: 14px; color: var(--dark); outline: none;
-  }
+  .feedback-form input, .feedback-form textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px; font-family: inherit; font-size: 14px; color: var(--dark); outline: none; }
   .feedback-form input:focus, .feedback-form textarea:focus { border-color: var(--red); }
   .feedback-form textarea { resize: vertical; min-height: 70px; }
-  .feedback-btn {
-    background: var(--dark); color: #fff; padding: 11px; border: none; border-radius: 6px;
-    font-size: 15px; font-weight: 700; cursor: pointer; transition: background 0.2s; text-align: center;
-  }
+  .feedback-btn { background: var(--dark); color: #fff; padding: 11px; border: none; border-radius: 6px; font-size: 15px; font-weight: 700; cursor: pointer; transition: background 0.2s; text-align: center; }
   .feedback-btn:hover { background: var(--red-dark); }
-
   .benefits { background: var(--white); }
-  .benefits-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
-  }
-  .benefit {
-    display: flex; gap: 14px; align-items: flex-start; padding: 20px;
-    border: 1px solid var(--border); border-radius: var(--radius);
-    transition: background 0.3s;
-  }
+  .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+  .benefit { display: flex; gap: 14px; align-items: flex-start; padding: 20px; border: 1px solid var(--border); border-radius: var(--radius); transition: background 0.3s; }
   .benefit:hover { background: var(--gold-light); border-color: var(--gold); }
-  .benefit-icon {
-    width: 36px; height: 36px; background: var(--green-light); border-radius: 8px;
-    display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;
-  }
+  .benefit-icon { width: 36px; height: 36px; background: var(--green-light); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
   .benefit h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
   .benefit p { font-size: 13px; color: var(--muted); }
-
-  .contact-section {
-    background: var(--red);
-    color: #fff;
-    text-align: center;
-    padding: 60px 24px;
-    position: relative; overflow: hidden;
-  }
-  .contact-section::before {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(170deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
-    background-size: 100% 200%; animation: shimmer 4s infinite linear; pointer-events: none;
-  }
+  .contact-section { background: var(--red); color: #fff; text-align: center; padding: 60px 24px; position: relative; overflow: hidden; }
+  .contact-section::before { content: ''; position: absolute; inset: 0; background: linear-gradient(170deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%); background-size: 100% 200%; animation: shimmer 4s infinite linear; pointer-events: none; }
   .contact-section h2 { font-size: clamp(24px, 4vw, 36px); font-weight: 900; letter-spacing: -0.5px; margin-bottom: 12px; position: relative; }
   .contact-section p { font-size: 17px; color: rgba(255,255,255,0.8); margin-bottom: 30px; position: relative; }
   .contact-cards { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px; position: relative; }
-  .contact-card {
-    background: rgba(255,255,255,0.12);
-    border: 1.5px solid rgba(255,255,255,0.25);
-    border-radius: var(--radius);
-    padding: 20px 30px; min-width: 180px; transition: all 0.3s; cursor: pointer;
-  }
+  .contact-card { background: rgba(255,255,255,0.12); border: 1.5px solid rgba(255,255,255,0.25); border-radius: var(--radius); padding: 20px 30px; min-width: 180px; transition: all 0.3s; cursor: pointer; }
   .contact-card:hover { background: rgba(255,255,255,0.2); transform: translateY(-5px); }
   .contact-card .icon { font-size: 26px; margin-bottom: 8px; }
   .contact-card .type { font-size: 11px; font-weight: 700; letter-spacing: 0.5px; opacity: 0.6; margin-bottom: 4px; text-transform: uppercase; }
   .contact-card .value { font-size: 16px; font-weight: 700; }
   .contact-note { font-size: 14px; color: rgba(255,255,255,0.65); position: relative; }
   .contact-note strong { color: #fff; }
-
   footer { background: var(--dark); color: rgba(255,255,255,0.45); text-align: center; padding: 24px; font-size: 13px; }
-
-  .sticky-bar {
-    position: fixed; bottom: 0; left: 0; right: 0;
-    background: var(--dark); border-top: 3px solid var(--red);
-    padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; z-index: 100; gap: 16px;
-  }
+  .sticky-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--dark); border-top: 3px solid var(--red); padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; z-index: 100; gap: 16px; }
   .sticky-bar span { color: #fff; font-size: 15px; font-weight: 500; }
   .sticky-bar span b { color: var(--gold); }
-  .sticky-btn {
-    background: var(--red); color: #fff; padding: 11px 24px; border-radius: 7px;
-    font-size: 15px; font-weight: 700; border: none; cursor: pointer;
-    white-space: nowrap; flex-shrink: 0; transition: background 0.2s;
-  }
+  .sticky-btn { background: var(--red); color: #fff; padding: 11px 24px; border-radius: 7px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; white-space: nowrap; flex-shrink: 0; transition: background 0.2s; }
   .sticky-btn:hover { background: var(--red-dark); }
+
+  /* ---- Day & Time Picker ---- */
+  .picker-section { margin-bottom: 10px; }
+  .picker-label { font-size: 13px; font-weight: 600; color: var(--mid); margin-bottom: 8px; }
+  .day-btn-group, .time-btn-group { display: flex; flex-wrap: wrap; gap: 8px; }
+  .day-btn, .time-btn { padding: 9px 14px; border-radius: 8px; border: 1.5px solid var(--border); background: var(--white); color: var(--dark); font-family: inherit; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.18s; flex: 1 1 auto; text-align: center; }
+  .day-btn:hover, .time-btn:hover { border-color: var(--red); background: var(--red-light); }
+  .day-btn.active, .time-btn.active { background: var(--red); border-color: var(--red); color: #fff; font-weight: 700; }
+  .callback-summary { display: flex; align-items: center; gap: 8px; background: var(--green-light); border: 1.5px solid var(--green); border-radius: 8px; padding: 10px 14px; font-size: 14px; font-weight: 600; color: #2e7d56; }
+  .summary-icon { font-size: 16px; }
+  .summary-change { margin-right: auto; background: none; border: none; font-size: 12px; color: var(--muted); cursor: pointer; text-decoration: underline; font-family: inherit; padding: 0; }
+  .summary-change:hover { color: var(--dark); }
+  .any-btn { flex-basis: 100%; background: var(--bg); border-style: dashed; }
 
   @media (max-width: 600px) {
     header { flex-direction: column; gap: 12px; text-align: center; }
@@ -590,36 +193,22 @@
 
 <section class="hero">
   <div class="c1"></div><div class="c2"></div>
-  
   <div class="container">
     <div class="hero-badge">⚠️ רוב בעלי המשכנתאות משלמים יותר מדי</div>
-    
     <svg class="hero-shield" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M32 4L8 14v18c0 14.4 10.4 27.8 24 31 13.6-3.2 24-16.6 24-31V14L32 4z" fill="#4caf7d" opacity="0.15"/>
       <path d="M32 12L12 20v12c0 11.6 8.6 22.4 20 25 11.4-2.6 20-13.4 20-25V20L32 12z" fill="#253352"/>
       <path d="M22 32l7 7 13-13" stroke="#b8952a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
-
     <h1>הכסף שלך בורח כל חודש?<br><span class="accent">בואו נסגור את הברז!</span></h1>
     <p class="subtitle">ביטוח החיים למשכנתא שלך עשוי לעלות לך אלפי שקלים מיותרים. בדיקה חינם, ללא התחייבות, בדקות בודדות.</p>
-    
     <div class="hero-stats">
-      <div class="hero-stat">
-        <span class="num">9/10</span>
-        <span class="label">פוליסות שבדקנו —<br>מצאנו חיסכון</span>
-      </div>
+      <div class="hero-stat"><span class="num">9/10</span><span class="label">פוליסות שבדקנו —<br>מצאנו חיסכון</span></div>
       <div class="hero-divider"></div>
-      <div class="hero-stat">
-        <span class="num">₪3,000+</span>
-        <span class="label">חיסכון ממוצע<br>לאורך ההלוואה</span>
-      </div>
+      <div class="hero-stat"><span class="num">₪3,000+</span><span class="label">חיסכון ממוצע<br>לאורך ההלוואה</span></div>
       <div class="hero-divider"></div>
-      <div class="hero-stat">
-        <span class="num">₪0</span>
-        <span class="label">עלות הבדיקה<br>ועלות הניוד</span>
-      </div>
+      <div class="hero-stat"><span class="num">₪0</span><span class="label">עלות הבדיקה<br>ועלות הניוד</span></div>
     </div>
-    
     <div class="cta-group">
       <button onclick="scrollToForm()" class="btn-primary">בדיקה מהירה להוזלה ←</button>
       <a href="tel:0733021404" class="btn-secondary">📞 השאר פרטים בתא קולי: 0733-021-404</a>
@@ -640,21 +229,9 @@
     <h2 class="section-title">למה אתם משלמים יותר ממה שצריך?</h2>
     <p class="section-sub">חברות הביטוח לא טורחות להודיע לכם שהמחיר ירד — הן מעדיפות שתמשיכו לשלם.</p>
     <div class="problem-grid">
-      <div class="problem-card">
-        <span class="icon">😴</span>
-        <h3>לקחתם ביטוח בעת לקיחת המשכנתא</h3>
-        <p>הבנק "הכווין" אתכם לביטוח שלהם — לא בהכרח הכי זול. זה נוח להם, לא לכם.</p>
-      </div>
-      <div class="problem-card">
-        <span class="icon">📉</span>
-        <h3>יתרת ההלוואה ירדה — הפרמיה לא</h3>
-        <p>ככל שמחזירים יותר, הסיכון לחברת הביטוח קטן. אבל הם לא ממהרים לעדכן את המחיר שלכם.</p>
-      </div>
-      <div class="problem-card">
-        <span class="icon">🚪</span>
-        <h3>"אמרו לי שאי אפשר להוזיל"</h3>
-        <p>זה לא נכון. ב-9 מתוך 10 מקרים שבדקנו — מצאנו חיסכון. גם אחרי שאמרו ללקוח שהוא כבר במחיר הכי נמוך.</p>
-      </div>
+      <div class="problem-card"><span class="icon">😴</span><h3>לקחתם ביטוח בעת לקיחת המשכנתא</h3><p>הבנק "הכווין" אתכם לביטוח שלהם — לא בהכרח הכי זול. זה נוח להם, לא לכם.</p></div>
+      <div class="problem-card"><span class="icon">📉</span><h3>יתרת ההלוואה ירדה — הפרמיה לא</h3><p>ככל שמחזירים יותר, הסיכון לחברת הביטוח קטן. אבל הם לא ממהרים לעדכן את המחיר שלכם.</p></div>
+      <div class="problem-card"><span class="icon">🚪</span><h3>"אמרו לי שאי אפשר להוזיל"</h3><p>זה לא נכון. ב-9 מתוך 10 מקרים שבדקנו — מצאנו חיסכון. גם אחרי שאמרו ללקוח שהוא כבר במחיר הכי נמוך.</p></div>
     </div>
   </div>
 </section>
@@ -665,27 +242,9 @@
     <h2 class="section-title">שלושה צעדים פשוטים</h2>
     <p class="section-sub">כל התהליך לוקח דקות — החיסכון נשאר אצלכם שנים.</p>
     <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <h3>משאירים פרטים בטופס</h3>
-          <p>שם וטלפון בלבד, ללא טפסים ארוכים ומסובכים. ותוך זמן קצר חוזרים אליכם להשלמת התהליך.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-body">
-          <h3>אנחנו בודקים ומשווים</h3>
-          <p>אנחנו בודקים את הפוליסה מאפס ומשווים מול החברה שאנחנו עובדים איתה — בדיוק אותם כיסויים, מחיר נמוך יותר.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-body">
-          <h3>מעבר חלק — כל החיסכון לכם</h3>
-          <p>אפס עמלות ניוד. אבטחה מלאה. כל שקל שנחסך הולך ישירות לכיס שלכם.</p>
-        </div>
-      </div>
+      <div class="step"><div class="step-num">1</div><div class="step-body"><h3>משאירים פרטים בטופס</h3><p>שם וטלפון בלבד, ללא טפסים ארוכים ומסובכים. ותוך זמן קצר חוזרים אליכם להשלמת התהליך.</p></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body"><h3>אנחנו בודקים ומשווים</h3><p>אנחנו בודקים את הפוליסה מאפס ומשווים מול החברה שאנחנו עובדים איתה — בדיוק אותם כיסויים, מחיר נמוך יותר.</p></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body"><h3>מעבר חלק — כל החיסכון לכם</h3><p>אפס עמלות ניוד. אבטחה מלאה. כל שקל שנחסך הולך ישירות לכיס שלכם.</p></div></div>
     </div>
   </div>
 </section>
@@ -695,34 +254,10 @@
     <div class="section-label">למה אנחנו</div>
     <h2 class="section-title">מה מקבלים בבדיקה</h2>
     <div class="benefits-grid">
-      <div class="benefit">
-        <div class="benefit-icon">✅</div>
-        <div>
-          <h4>בדיקה חינם לגמרי</h4>
-          <p>לא משלמים שקל גם אם לא עוברים.</p>
-        </div>
-      </div>
-      <div class="benefit">
-        <div class="benefit-icon">🔒</div>
-        <div>
-          <h4>אותם כיסויים בדיוק</h4>
-          <p>לא מוותרים על שום הגנה, רק מורידים מחיר.</p>
-        </div>
-      </div>
-      <div class="benefit">
-        <div class="benefit-icon">🚀</div>
-        <div>
-          <h4>ניוד ללא עלות</h4>
-          <p>אין עמלות, אין דמי טיפול, אין הפתעות.</p>
-        </div>
-      </div>
-      <div class="benefit">
-        <div class="benefit-icon">💸</div>
-        <div>
-          <h4>כל הרווח לכם</h4>
-          <p>לא גובים עמלה מהלקוח — אתם מרוויחים הכל.</p>
-        </div>
-      </div>
+      <div class="benefit"><div class="benefit-icon">✅</div><div><h4>בדיקה חינם לגמרי</h4><p>לא משלמים שקל גם אם לא עוברים.</p></div></div>
+      <div class="benefit"><div class="benefit-icon">🔒</div><div><h4>אותם כיסויים בדיוק</h4><p>לא מוותרים על שום הגנה, רק מורידים מחיר.</p></div></div>
+      <div class="benefit"><div class="benefit-icon">🚀</div><div><h4>ניוד ללא עלות</h4><p>אין עמלות, אין דמי טיפול, אין הפתעות.</p></div></div>
+      <div class="benefit"><div class="benefit-icon">💸</div><div><h4>כל הרווח לכם</h4><p>לא גובים עמלה מהלקוח — אתם מרוויחים הכל.</p></div></div>
     </div>
   </div>
 </section>
@@ -732,44 +267,26 @@
     <div class="section-label">כמה תחסכו?</div>
     <h2 class="section-title">מחשבון חיסכון מהיר (35% הנחה)</h2>
     <div class="calc-box">
-      <div class="calc-header">
-        <h3>בדקו כמה כסף נשאר אצלכם בכיס</h3>
-      </div>
-      
+      <div class="calc-header"><h3>בדקו כמה כסף נשאר אצלכם בכיס</h3></div>
       <div class="calc-row">
         <label>כמה אתם משלמים היום בחודש?</label>
         <input type="range" id="currPrice" min="15" max="500" value="100">
         <div class="val-display"><span id="currPrice-lbl">₪100</span></div>
       </div>
-
       <div class="calc-row">
         <label>כמה שנים נשארו למשכנתא?</label>
         <input type="range" id="yearsLeft" min="1" max="30" value="20">
         <div class="val-display"><span id="yearsLeft-lbl">20 שנה</span></div>
       </div>
-
       <div class="calc-result">
         <div class="res-grid">
-          <div class="res-item">
-            <span>חיסכון חודשי</span>
-            <strong id="save-month">₪35</strong>
-          </div>
-          <div class="res-item">
-            <span>חיסכון שנתי</span>
-            <strong id="save-year">₪420</strong>
-          </div>
-          <div class="res-item full">
-            <span>חיסכון כולל לכל התקופה</span>
-            <strong id="save-total">₪8,400</strong>
-          </div>
+          <div class="res-item"><span>חיסכון חודשי</span><strong id="save-month">₪35</strong></div>
+          <div class="res-item"><span>חיסכון שנתי</span><strong id="save-year">₪420</strong></div>
+          <div class="res-item full"><span>חיסכון כולל לכל התקופה</span><strong id="save-total">₪8,400</strong></div>
         </div>
       </div>
-      
-      <button onclick="scrollToForm()" class="btn-primary" style="display:block; width:100%; text-align:center; margin-top:10px; border:none; padding:8px; font-size:15px;">אני רוצה לבדוק זכאות להנחה ←</button>
-      
-      <p class="calc-disclaimer">
-        * הנתונים מבוססים על ממוצע חיסכון של 35% ומהווים הערכה בלבד. גובה החיסכון בכפוף לבדיקה פרטנית של תנאי הפוליסה, גיל ומצב בריאותי.
-      </p>
+      <button onclick="scrollToForm()" class="btn-primary" style="display:block;width:100%;text-align:center;margin-top:10px;border:none;padding:8px;font-size:15px;">אני רוצה לבדוק זכאות להנחה ←</button>
+      <p class="calc-disclaimer">* הנתונים מבוססים על ממוצע חיסכון של 35% ומהווים הערכה בלבד. גובה החיסכון בכפוף לבדיקה פרטנית של תנאי הפוליסה, גיל ומצב בריאותי.</p>
     </div>
   </div>
 </section>
@@ -779,28 +296,24 @@
     <div class="section-label">לקוחות מספרים</div>
     <h2 class="section-title">גם הם אמרו "אני כבר במחיר הכי נמוך"</h2>
     <p class="section-sub">ואז עשינו להם בדיקה...</p>
-    
     <div class="testimonials">
       <div class="testimonial">
         <div class="savings-badge">חסכנו ₪28 בחודש</div>
         <div class="stars">★★★★★</div>
         <p>"חשבתי שזה לא שווה, 'כמה שקלים בחודש'... אבל כשהסברו לי שזה ₪8,400 לאורך המשכנתא, שיניתי דעה מיד."</p>
-        <div class="name">אהרן ר.</div>
-        <div class="city">אשדוד</div>
+        <div class="name">אהרן ר.</div><div class="city">אשדוד</div>
       </div>
       <div class="testimonial">
         <div class="savings-badge">חסכנו ₪45 בחודש</div>
         <div class="stars">★★★★★</div>
         <p>"ממש הייתי סקפטי. הבנק אמר לי שאני עם ביטוח מסובסד. אחרי הבדיקה, הועברתי לפוליסה זהה בחצי המחיר."</p>
-        <div class="name">אבי מ.</div>
-        <div class="city">ירושלים</div>
+        <div class="name">אבי מ.</div><div class="city">ירושלים</div>
       </div>
       <div class="testimonial">
         <div class="savings-badge">חסכנו ₪19 בחודש</div>
         <div class="stars">★★★★★</div>
         <p>"הכל נעשה בלי שנאלצתי לעשות כלום בעצמי. השארתי פרטים באתר, חזרו אליי וסגרנו עניין במהירות."</p>
-        <div class="name">מיכל ד.</div>
-        <div class="city">בני ברק</div>
+        <div class="name">מיכל ד.</div><div class="city">בני ברק</div>
       </div>
     </div>
 
@@ -809,22 +322,43 @@
         <div class="savings-badge">חסכנו ₪54 בחודש</div>
         <div class="stars">★★★★★</div>
         <p>"שילמנו מחיר מופרז במשך שנים בלי לדעת בכלל. הבדיקה גילתה שאפשר לחתוך את העלויות כמעט בחצי, חיסכון של מעל 15,000 שקל!"</p>
-        <div class="name">ישראל ו.</div>
-        <div class="city">בני ברק</div>
+        <div class="name">ישראל ו.</div><div class="city">בני ברק</div>
       </div>
       <div class="testimonial">
         <div class="savings-badge">חסכנו ₪38 בחודש</div>
         <div class="stars">★★★★★</div>
         <p>"הייתי בטוח שאין מה לגעת בביטוח הקיים. השארתי שם וטלפון, ותוך יום חזרו אליי עם הצעה שחוסכת לי קרוב ל-500 שקלים בכל שנה."</p>
-        <div class="name">שמואל ק.</div>
-        <div class="city">מודיעין עילית</div>
+        <div class="name">שמואל ק.</div><div class="city">מודיעין עילית</div>
       </div>
       <div class="testimonial">
         <div class="savings-badge">חסכנו ₪62 בחודש</div>
         <div class="stars">★★★★★</div>
         <p>"פשוט לא להאמין כמה כסף סתם זרקנו לחברת הביטוח הישנה. השירות היה מהיר, מקצועי ובלי כאבי ראש בכלל."</p>
-        <div class="name">חיים ס.</div>
-        <div class="city">אלעד</div>
+        <div class="name">חיים ס.</div><div class="city">אלעד</div>
+      </div>
+      <div class="testimonial">
+        <div class="savings-badge">חסכנו ₪36 בחודש</div>
+        <div class="stars">★★★★★</div>
+        <p>"נכנסתי לאתר הגיזרה וראיתי את המודעה. לא חשבתי שיצא מזה משהו — אבל בסוף חסכנו מעל 8,500 שקל לכל תקופת המשכנתא. שווה כל רגע."</p>
+        <div class="name">יעקב פ.</div><div class="city">בני ברק</div>
+      </div>
+      <div class="testimonial">
+        <div class="savings-badge">חסכנו ₪29 בחודש</div>
+        <div class="stars">★★★★★</div>
+        <p>"ראיתי פרסום בגיזרה והשארתי פרטים. תוך כמה שעות כבר חזרו אליי. הם הסבירו הכל בסבלנות, טיפלו בכל הניירת, ואני רק חתמתי. חיסכון אמיתי."</p>
+        <div class="name">מנחם ב.</div><div class="city">ירושלים</div>
+      </div>
+      <div class="testimonial">
+        <div class="savings-badge">חסכנו ₪22 בחודש</div>
+        <div class="stars">★★★★★</div>
+        <p>"בעלי ראה את הפרסום בגיזרה ושכנע אותי לנסות. ב"ה — החיסכון שיצא לנו הוא ממש חלומי. ממליצה בחום לכל מי שיש משכנתא."</p>
+        <div class="name">רחל ש.</div><div class="city">בית שמש</div>
+      </div>
+      <div class="testimonial">
+        <div class="savings-badge">חסכנו ₪34 בחודש</div>
+        <div class="stars">★★★★★</div>
+        <p>"הגעתי דרך הגיזרה. שנים שילמנו ביוקר ולא ידענו שאפשר אחרת. הצוות היה יסודי ומקצועי, והמעבר היה חלק לגמרי. ממליץ לכל אחד."</p>
+        <div class="name">דוד א.</div><div class="city">אשדוד</div>
       </div>
     </div>
 
@@ -833,7 +367,7 @@
     </div>
 
     <div class="feedback-box">
-      <h3>השאירו לנו משוב </h3>
+      <h3>השאירו לנו משוב</h3>
       <form class="feedback-form" action="https://api.web3forms.com/submit" method="POST">
         <input type="hidden" name="access_key" value="4edea9e2-47fb-4fa3-a1f9-9b90937a4703">
         <input type="hidden" name="סוג הטופס" value="משוב לקוח מהאתר">
@@ -851,15 +385,11 @@
     <h2>מוכנים לדעת כמה תחסכו?</h2>
     <p>הבדיקה חינם, לוקחת דקות. חבל על כל חודש שעובר.</p>
     <div class="contact-cards">
-      <button onclick="scrollToForm()" class="contact-card" style="border:none; color:inherit; font-family:inherit; text-align:center;">
-        <div class="icon">📝</div>
-        <div class="type">דיגיטלי מהיר</div>
-        <div class="value">מילוי פרטים באתר</div>
+      <button onclick="scrollToForm()" class="contact-card" style="border:none;color:inherit;font-family:inherit;text-align:center;">
+        <div class="icon">📝</div><div class="type">דיגיטלי מהיר</div><div class="value">מילוי פרטים באתר</div>
       </button>
       <a href="tel:0733021404" class="contact-card">
-        <div class="icon">📞</div>
-        <div class="type">תא קולי 24/6</div>
-        <div class="value">0733-021-404</div>
+        <div class="icon">📞</div><div class="type">תא קולי 24/6</div><div class="value">0733-021-404</div>
       </a>
     </div>
     <p class="contact-note">הבדיקה לוקחת <strong>דקות בודדות</strong>.<br>החיסכון נשאר אצלכם <strong>שנים</strong>.</p>
@@ -871,21 +401,53 @@
   <div class="lead-form-container" id="leadFormSection">
     <h3>טופס בדיקה דיגיטלי</h3>
     <p>מלאו פרטים קצרים והנתונים יישלחו אלינו ישירות לבדיקה</p>
-    
     <form class="main-form" action="https://api.web3forms.com/submit" method="POST">
       <input type="hidden" name="access_key" value="4edea9e2-47fb-4fa3-a1f9-9b90937a4703">
-
       <div class="form-group">
-        <label>שם מלא:</label>
+        <label>שם מלא <span style="color:var(--red);">*</span></label>
         <input type="text" name="שם מלא" placeholder="ישראל ישראלי" required>
       </div>
       <div class="form-group">
-        <label>מספר טלפון:</label>
+        <label>מספר טלפון <span style="color:var(--red);">*</span></label>
         <input type="tel" name="מספר טלפון" placeholder="0501234567" pattern="[0-9]{9,10}" title="נא להזין מספר טלפון תקין" required>
       </div>
       <div class="form-group">
-        <label>יתרת משכנתא משוערת: <span style="font-weight:400; color:var(--muted);">(אופציונלי)</span></label>
-        <input type="text" name="יתרת משכנתא משוערת" placeholder="לדוגמה: 800,000 ₪">
+        <label>יתרת משכנתא משוערת</label>
+        <input type="text" name="יתרת משכנתא משוערת" placeholder="">
+      </div>
+      <div class="form-group">
+        <label>חברה המבטחת כיום</label>
+        <input type="text" name="חברה המבטחת כיום" placeholder="">
+      </div>
+      <div class="form-group">
+        <label>סכום תשלום חודשי נוכחי</label>
+        <input type="text" name="סכום תשלום חודשי נוכחי" placeholder="">
+      </div>
+      <div class="form-group">
+        <label>מתי נוח לך שנחזור אליך?</label>
+        <input type="hidden" name="טווח שעות מועדף לחזרה" id="callbackHiddenInput">
+        <div class="picker-section" id="dayPickerSection">
+          <div class="picker-label">📅 איזה יום מועדף עליך?</div>
+          <div class="day-btn-group">
+            <button type="button" class="day-btn" data-day="sunday"    onclick="selectDay('sunday')">ראשון</button>
+            <button type="button" class="day-btn" data-day="monday"    onclick="selectDay('monday')">שני</button>
+            <button type="button" class="day-btn" data-day="tuesday"   onclick="selectDay('tuesday')">שלישי</button>
+            <button type="button" class="day-btn" data-day="wednesday" onclick="selectDay('wednesday')">רביעי</button>
+            <button type="button" class="day-btn" data-day="thursday"  onclick="selectDay('thursday')">חמישי</button>
+            <button type="button" class="day-btn" data-day="friday"    onclick="selectDay('friday')">שישי</button>
+            <button type="button" class="day-btn any-btn" data-day="any" onclick="selectDay('any')">לא משנה לי</button>
+          </div>
+        </div>
+        <div class="picker-section" id="timePickerSection" style="display:none;">
+          <div class="picker-label">🕐 באיזו שעה?</div>
+          <div class="time-btn-group" id="timeBtnGroup"></div>
+        </div>
+        <div class="callback-summary" id="callbackSummary" style="display:none;">
+          <span class="summary-icon">✅</span>
+          <span id="summaryText"></span>
+          <button type="button" class="summary-change" onclick="resetCallbackPicker()">שנה</button>
+        </div>
+        <small style="display:block;margin-top:5px;color:var(--muted);font-size:12px;">שעות פעילות: א׳–ה׳ 8:30–17:30 | שישי 9:00–11:30</small>
       </div>
       <button type="submit" class="form-submit-btn">שלח לבדיקה מקצועית ←</button>
     </form>
@@ -904,23 +466,18 @@
 <script>
   function scrollToForm() {
     const element = document.getElementById("leadFormSection");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
+    if (element) element.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 
   function update() {
     const price = document.getElementById('currPrice').value;
     const years = document.getElementById('yearsLeft').value;
     const discount = 0.35;
-
     document.getElementById('currPrice-lbl').textContent = '₪' + price;
-    document.getElementById('yearsLeft-lbl').textContent = years + ' שנה';
-
+    document.getElementById('yearsLeft-lbl').textContent = years + ' שנים';
     const monthly = Math.round(price * discount);
     const yearly = monthly * 12;
     const total = yearly * years;
-
     document.getElementById('save-month').textContent = '₪' + monthly.toLocaleString();
     document.getElementById('save-year').textContent = '₪' + yearly.toLocaleString();
     document.getElementById('save-total').textContent = '₪' + total.toLocaleString();
@@ -929,7 +486,6 @@
   function toggleTestimonials() {
     const container = document.getElementById('moreTestimonials');
     const btn = document.getElementById('toggleBtn');
-    
     if (container.style.display === "grid") {
       container.style.display = "none";
       btn.textContent = "צפה בעוד סיפורי הצלחה ↓";
@@ -937,6 +493,72 @@
       container.style.display = "grid";
       btn.textContent = "הסתר תגובות ↑";
     }
+  }
+
+  const weekdaySlots = [
+    { label: '8:30 – 10:00',  suffix: '08:30–10:00' },
+    { label: '10:00 – 12:00', suffix: '10:00–12:00' },
+    { label: '12:00 – 14:00', suffix: '12:00–14:00' },
+    { label: '14:00 – 16:00', suffix: '14:00–16:00' },
+    { label: '16:00 – 17:30', suffix: '16:00–17:30' },
+  ];
+  const timeSlots = {
+    sunday:    weekdaySlots.map(s => ({ label: s.label, value: 'ראשון ' + s.suffix })),
+    monday:    weekdaySlots.map(s => ({ label: s.label, value: 'שני ' + s.suffix })),
+    tuesday:   weekdaySlots.map(s => ({ label: s.label, value: 'שלישי ' + s.suffix })),
+    wednesday: weekdaySlots.map(s => ({ label: s.label, value: 'רביעי ' + s.suffix })),
+    thursday:  weekdaySlots.map(s => ({ label: s.label, value: 'חמישי ' + s.suffix })),
+    friday: [
+      { label: '9:00 – 10:00',  value: 'שישי 09:00–10:00' },
+      { label: '10:00 – 11:30', value: 'שישי 10:00–11:30' },
+    ],
+    any: weekdaySlots.map(s => ({ label: s.label, value: 'כל יום ' + s.suffix })),
+  };
+  const dayLabels = { sunday: 'ראשון', monday: 'שני', tuesday: 'שלישי', wednesday: 'רביעי', thursday: 'חמישי', friday: 'שישי', any: 'כל יום' };
+
+  let selectedDay = null;
+
+  function selectDay(day) {
+    selectedDay = day;
+    document.querySelectorAll('.day-btn').forEach(b => b.classList.toggle('active', b.dataset.day === day));
+    const group = document.getElementById('timeBtnGroup');
+    group.innerHTML = '';
+    const slotsToShow = [...timeSlots[day]];
+    const dayName = dayLabels[day];
+    slotsToShow.push({ label: 'לא משנה לי', value: dayName + ' – כל שעה' });
+    slotsToShow.forEach(slot => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'time-btn' + (slot.label === 'לא משנה לי' ? ' any-btn' : '');
+      btn.textContent = slot.label;
+      btn.dataset.value = slot.value;
+      btn.onclick = () => selectTime(slot, btn);
+      group.appendChild(btn);
+    });
+    document.getElementById('timePickerSection').style.display = 'block';
+    document.getElementById('callbackSummary').style.display = 'none';
+    document.getElementById('callbackHiddenInput').value = '';
+  }
+
+  function selectTime(slot, btn) {
+    document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('callbackHiddenInput').value = slot.value;
+    const dayLabel = dayLabels[selectedDay];
+    const timeDisplay = btn.textContent === 'לא משנה לי' ? 'כל שעה' : btn.textContent;
+    document.getElementById('summaryText').textContent = dayLabel + ', ' + timeDisplay;
+    document.getElementById('callbackSummary').style.display = 'flex';
+    document.getElementById('dayPickerSection').style.display = 'none';
+    document.getElementById('timePickerSection').style.display = 'none';
+  }
+
+  function resetCallbackPicker() {
+    selectedDay = null;
+    document.getElementById('callbackSummary').style.display = 'none';
+    document.getElementById('dayPickerSection').style.display = 'block';
+    document.getElementById('timePickerSection').style.display = 'none';
+    document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('callbackHiddenInput').value = '';
   }
 
   document.getElementById('currPrice').addEventListener('input', update);
