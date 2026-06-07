@@ -155,6 +155,20 @@
   .sticky-btn { background: var(--red); color: #fff; padding: 11px 24px; border-radius: 7px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; white-space: nowrap; flex-shrink: 0; transition: background 0.2s; }
   .sticky-btn:hover { background: var(--red-dark); }
 
+  /* ---- Insurance Type Toggle ---- */
+  .insurance-type-group { display: flex; gap: 12px; margin-bottom: 4px; }
+  .ins-type-btn { flex: 1; padding: 13px 10px; border-radius: 10px; border: 2px solid var(--border); background: var(--white); color: var(--dark); font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .ins-type-btn .ins-icon { font-size: 22px; }
+  .ins-type-btn:hover { border-color: var(--red); background: var(--red-light); }
+  .ins-type-btn.active { background: var(--red); border-color: var(--red); color: #fff; }
+  .form-section { display: none; animation: fadeIn 0.3s ease; }
+  .form-section.visible { display: flex; flex-direction: column; gap: 14px; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .form-group select { width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 15px; outline: none; transition: border 0.2s; background: var(--white); color: var(--dark); appearance: auto; }
+  .form-group select:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(184,149,42,0.1); }
+  .form-group textarea { width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 15px; outline: none; transition: border 0.2s; resize: vertical; min-height: 80px; color: var(--dark); }
+  .form-group textarea:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(184,149,42,0.1); }
+
   /* ---- Day & Time Picker ---- */
   .picker-section { margin-bottom: 10px; }
   .picker-label { font-size: 13px; font-weight: 600; color: var(--mid); margin-bottom: 8px; }
@@ -403,6 +417,24 @@
     <p>מלאו פרטים קצרים והנתונים יישלחו אלינו ישירות לבדיקה</p>
     <form class="main-form" action="https://api.web3forms.com/submit" method="POST">
       <input type="hidden" name="access_key" value="4edea9e2-47fb-4fa3-a1f9-9b90937a4703">
+      <input type="hidden" name="סוג הפנייה" id="insuranceTypeHidden" value="">
+
+      <!-- Step 1: choose type -->
+      <div class="form-group">
+        <label>מה סוג הפנייה שלך? <span style="color:var(--red);">*</span></label>
+        <div class="insurance-type-group">
+          <button type="button" class="ins-type-btn" id="btnNew" onclick="selectInsuranceType('new')">
+            <span class="ins-icon">🏠</span>
+            ביטוח חדש
+          </button>
+          <button type="button" class="ins-type-btn" id="btnTransfer" onclick="selectInsuranceType('transfer')">
+            <span class="ins-icon">🔄</span>
+            ניוד ביטוח קיים
+          </button>
+        </div>
+      </div>
+
+      <!-- Common fields: name + phone (always required) -->
       <div class="form-group">
         <label>שם מלא <span style="color:var(--red);">*</span></label>
         <input type="text" name="שם מלא" placeholder="ישראל ישראלי" required>
@@ -411,45 +443,110 @@
         <label>מספר טלפון <span style="color:var(--red);">*</span></label>
         <input type="tel" name="מספר טלפון" placeholder="0501234567" pattern="[0-9]{9,10}" title="נא להזין מספר טלפון תקין" required>
       </div>
-      <div class="form-group">
-        <label>יתרת משכנתא משוערת</label>
-        <input type="text" name="יתרת משכנתא משוערת" placeholder="">
-      </div>
-      <div class="form-group">
-        <label>חברה המבטחת כיום</label>
-        <input type="text" name="חברה המבטחת כיום" placeholder="">
-      </div>
-      <div class="form-group">
-        <label>סכום תשלום חודשי נוכחי</label>
-        <input type="text" name="סכום תשלום חודשי נוכחי" placeholder="">
-      </div>
-      <div class="form-group">
-        <label>מתי נוח לך שנחזור אליך?</label>
-        <input type="hidden" name="טווח שעות מועדף לחזרה" id="callbackHiddenInput">
-        <div class="picker-section" id="dayPickerSection">
-          <div class="picker-label">📅 איזה יום מועדף עליך?</div>
-          <div class="day-btn-group">
-            <button type="button" class="day-btn" data-day="sunday"    onclick="selectDay('sunday')">ראשון</button>
-            <button type="button" class="day-btn" data-day="monday"    onclick="selectDay('monday')">שני</button>
-            <button type="button" class="day-btn" data-day="tuesday"   onclick="selectDay('tuesday')">שלישי</button>
-            <button type="button" class="day-btn" data-day="wednesday" onclick="selectDay('wednesday')">רביעי</button>
-            <button type="button" class="day-btn" data-day="thursday"  onclick="selectDay('thursday')">חמישי</button>
-            <button type="button" class="day-btn" data-day="friday"    onclick="selectDay('friday')">שישי</button>
-            <button type="button" class="day-btn any-btn" data-day="any" onclick="selectDay('any')">לא משנה לי</button>
+
+      <!-- NEW insurance fields -->
+      <div class="form-section" id="sectionNew">
+        <div class="form-group">
+          <label>מספר זהות</label>
+          <input type="text" name="מספר זהות" placeholder="000000000" maxlength="9">
+        </div>
+        <div class="form-group">
+          <label>סכום המשכנתא המתוכנן</label>
+          <input type="text" name="סכום משכנתא" placeholder="למשל: 800,000 ₪">
+        </div>
+        <div class="form-group">
+          <label>מאיזה בנק לוקחים את המשכנתא?</label>
+          <select name="בנק המשכנתא">
+            <option value="">— בחר בנק —</option>
+            <option>בנק לאומי</option>
+            <option>בנק הפועלים</option>
+            <option>בנק דיסקונט</option>
+            <option>בנק מזרחי טפחות</option>
+            <option>בנק ירושלים</option>
+            <option>בנק אוצר החייל</option>
+            <option>בנק מרכנתיל</option>
+            <option>בנק הבינלאומי</option>
+            <option>One Zero</option>
+            <option>אחר</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>מתי נוח לך שנחזור אליך?</label>
+          <input type="hidden" name="טווח שעות מועדף לחזרה" id="callbackHiddenInputNew">
+          <div class="picker-section" id="dayPickerSectionNew">
+            <div class="picker-label">📅 איזה יום מועדף עליך?</div>
+            <div class="day-btn-group">
+              <button type="button" class="day-btn" data-day="sunday"    onclick="selectDay('sunday','new')">ראשון</button>
+              <button type="button" class="day-btn" data-day="monday"    onclick="selectDay('monday','new')">שני</button>
+              <button type="button" class="day-btn" data-day="tuesday"   onclick="selectDay('tuesday','new')">שלישי</button>
+              <button type="button" class="day-btn" data-day="wednesday" onclick="selectDay('wednesday','new')">רביעי</button>
+              <button type="button" class="day-btn" data-day="thursday"  onclick="selectDay('thursday','new')">חמישי</button>
+              <button type="button" class="day-btn" data-day="friday"    onclick="selectDay('friday','new')">שישי</button>
+              <button type="button" class="day-btn any-btn" data-day="any" onclick="selectDay('any','new')">לא משנה לי</button>
+            </div>
           </div>
+          <div class="picker-section" id="timePickerSectionNew" style="display:none;">
+            <div class="picker-label">🕐 באיזו שעה?</div>
+            <div class="time-btn-group" id="timeBtnGroupNew"></div>
+          </div>
+          <div class="callback-summary" id="callbackSummaryNew" style="display:none;">
+            <span class="summary-icon">✅</span>
+            <span id="summaryTextNew"></span>
+            <button type="button" class="summary-change" onclick="resetCallbackPicker('new')">שנה</button>
+          </div>
+          <small style="display:block;margin-top:5px;color:var(--muted);font-size:12px;">שעות פעילות: א׳–ה׳ 8:30–17:30 | שישי 9:00–11:30</small>
         </div>
-        <div class="picker-section" id="timePickerSection" style="display:none;">
-          <div class="picker-label">🕐 באיזו שעה?</div>
-          <div class="time-btn-group" id="timeBtnGroup"></div>
-        </div>
-        <div class="callback-summary" id="callbackSummary" style="display:none;">
-          <span class="summary-icon">✅</span>
-          <span id="summaryText"></span>
-          <button type="button" class="summary-change" onclick="resetCallbackPicker()">שנה</button>
-        </div>
-        <small style="display:block;margin-top:5px;color:var(--muted);font-size:12px;">שעות פעילות: א׳–ה׳ 8:30–17:30 | שישי 9:00–11:30</small>
       </div>
-      <button type="submit" class="form-submit-btn">שלח לבדיקה מקצועית ←</button>
+
+      <!-- TRANSFER insurance fields -->
+      <div class="form-section" id="sectionTransfer">
+        <div class="form-group">
+          <label>יתרת משכנתא משוערת</label>
+          <input type="text" name="יתרת משכנתא משוערת" placeholder="למשל: 500,000 ₪">
+        </div>
+        <div class="form-group">
+          <label>חברה המבטחת כיום</label>
+          <input type="text" name="חברה המבטחת כיום" placeholder="שם חברת הביטוח">
+        </div>
+        <div class="form-group">
+          <label>סכום תשלום חודשי נוכחי</label>
+          <input type="text" name="סכום תשלום חודשי נוכחי" placeholder="למשל: ₪120">
+        </div>
+        <div class="form-group">
+          <label>מתי נוח לך שנחזור אליך?</label>
+          <input type="hidden" name="טווח שעות מועדף לחזרה" id="callbackHiddenInputTransfer">
+          <div class="picker-section" id="dayPickerSectionTransfer">
+            <div class="picker-label">📅 איזה יום מועדף עליך?</div>
+            <div class="day-btn-group">
+              <button type="button" class="day-btn" data-day="sunday"    onclick="selectDay('sunday','transfer')">ראשון</button>
+              <button type="button" class="day-btn" data-day="monday"    onclick="selectDay('monday','transfer')">שני</button>
+              <button type="button" class="day-btn" data-day="tuesday"   onclick="selectDay('tuesday','transfer')">שלישי</button>
+              <button type="button" class="day-btn" data-day="wednesday" onclick="selectDay('wednesday','transfer')">רביעי</button>
+              <button type="button" class="day-btn" data-day="thursday"  onclick="selectDay('thursday','transfer')">חמישי</button>
+              <button type="button" class="day-btn" data-day="friday"    onclick="selectDay('friday','transfer')">שישי</button>
+              <button type="button" class="day-btn any-btn" data-day="any" onclick="selectDay('any','transfer')">לא משנה לי</button>
+            </div>
+          </div>
+          <div class="picker-section" id="timePickerSectionTransfer" style="display:none;">
+            <div class="picker-label">🕐 באיזו שעה?</div>
+            <div class="time-btn-group" id="timeBtnGroupTransfer"></div>
+          </div>
+          <div class="callback-summary" id="callbackSummaryTransfer" style="display:none;">
+            <span class="summary-icon">✅</span>
+            <span id="summaryTextTransfer"></span>
+            <button type="button" class="summary-change" onclick="resetCallbackPicker('transfer')">שנה</button>
+          </div>
+          <small style="display:block;margin-top:5px;color:var(--muted);font-size:12px;">שעות פעילות: א׳–ה׳ 8:30–17:30 | שישי 9:00–11:30</small>
+        </div>
+      </div>
+
+      <!-- Notes field (always visible after type selected, hidden initially) -->
+      <div class="form-group" id="notesGroup" style="display:none;">
+        <label>הערות נוספות</label>
+        <textarea name="הערות הלקוח" placeholder="רוצה להוסיף משהו? כתוב כאן..."></textarea>
+      </div>
+
+      <button type="submit" class="form-submit-btn" id="submitBtn" style="display:none;">שלח לבדיקה מקצועית ←</button>
     </form>
   </div>
 </div>
@@ -495,6 +592,18 @@
     }
   }
 
+  /* ---- Insurance type toggle ---- */
+  function selectInsuranceType(type) {
+    document.getElementById('insuranceTypeHidden').value = type === 'new' ? 'ביטוח חדש' : 'ניוד ביטוח קיים';
+    document.getElementById('btnNew').classList.toggle('active', type === 'new');
+    document.getElementById('btnTransfer').classList.toggle('active', type === 'transfer');
+    document.getElementById('sectionNew').classList.toggle('visible', type === 'new');
+    document.getElementById('sectionTransfer').classList.toggle('visible', type === 'transfer');
+    document.getElementById('notesGroup').style.display = 'flex';
+    document.getElementById('submitBtn').style.display = 'block';
+  }
+
+  /* ---- Day & Time Picker (supports two forms: 'new' and 'transfer') ---- */
   const weekdaySlots = [
     { label: '8:30 – 10:00',  suffix: '08:30–10:00' },
     { label: '10:00 – 12:00', suffix: '10:00–12:00' },
@@ -516,12 +625,17 @@
   };
   const dayLabels = { sunday: 'ראשון', monday: 'שני', tuesday: 'שלישי', wednesday: 'רביעי', thursday: 'חמישי', friday: 'שישי', any: 'כל יום' };
 
-  let selectedDay = null;
+  const selectedDays = { new: null, transfer: null };
 
-  function selectDay(day) {
-    selectedDay = day;
-    document.querySelectorAll('.day-btn').forEach(b => b.classList.toggle('active', b.dataset.day === day));
-    const group = document.getElementById('timeBtnGroup');
+  function suffix(formType) { return formType === 'new' ? 'New' : 'Transfer'; }
+
+  function selectDay(day, formType) {
+    selectedDays[formType] = day;
+    const s = suffix(formType);
+    document.querySelectorAll('#sectionNew .day-btn, #sectionTransfer .day-btn').forEach(b => {
+      if (b.closest('#section' + s)) b.classList.toggle('active', b.dataset.day === day);
+    });
+    const group = document.getElementById('timeBtnGroup' + s);
     group.innerHTML = '';
     const slotsToShow = [...timeSlots[day]];
     const dayName = dayLabels[day];
@@ -532,33 +646,35 @@
       btn.className = 'time-btn' + (slot.label === 'לא משנה לי' ? ' any-btn' : '');
       btn.textContent = slot.label;
       btn.dataset.value = slot.value;
-      btn.onclick = () => selectTime(slot, btn);
+      btn.onclick = () => selectTime(slot, btn, formType);
       group.appendChild(btn);
     });
-    document.getElementById('timePickerSection').style.display = 'block';
-    document.getElementById('callbackSummary').style.display = 'none';
-    document.getElementById('callbackHiddenInput').value = '';
+    document.getElementById('timePickerSection' + s).style.display = 'block';
+    document.getElementById('callbackSummary' + s).style.display = 'none';
+    document.getElementById('callbackHiddenInput' + s).value = '';
   }
 
-  function selectTime(slot, btn) {
-    document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('active'));
+  function selectTime(slot, btn, formType) {
+    const s = suffix(formType);
+    document.querySelectorAll('#timeBtnGroup' + s + ' .time-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    document.getElementById('callbackHiddenInput').value = slot.value;
-    const dayLabel = dayLabels[selectedDay];
+    document.getElementById('callbackHiddenInput' + s).value = slot.value;
+    const dayLabel = dayLabels[selectedDays[formType]];
     const timeDisplay = btn.textContent === 'לא משנה לי' ? 'כל שעה' : btn.textContent;
-    document.getElementById('summaryText').textContent = dayLabel + ', ' + timeDisplay;
-    document.getElementById('callbackSummary').style.display = 'flex';
-    document.getElementById('dayPickerSection').style.display = 'none';
-    document.getElementById('timePickerSection').style.display = 'none';
+    document.getElementById('summaryText' + s).textContent = dayLabel + ', ' + timeDisplay;
+    document.getElementById('callbackSummary' + s).style.display = 'flex';
+    document.getElementById('dayPickerSection' + s).style.display = 'none';
+    document.getElementById('timePickerSection' + s).style.display = 'none';
   }
 
-  function resetCallbackPicker() {
-    selectedDay = null;
-    document.getElementById('callbackSummary').style.display = 'none';
-    document.getElementById('dayPickerSection').style.display = 'block';
-    document.getElementById('timePickerSection').style.display = 'none';
-    document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('callbackHiddenInput').value = '';
+  function resetCallbackPicker(formType) {
+    const s = suffix(formType);
+    selectedDays[formType] = null;
+    document.getElementById('callbackSummary' + s).style.display = 'none';
+    document.getElementById('dayPickerSection' + s).style.display = 'block';
+    document.getElementById('timePickerSection' + s).style.display = 'none';
+    document.querySelectorAll('#section' + s + ' .day-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('callbackHiddenInput' + s).value = '';
   }
 
   document.getElementById('currPrice').addEventListener('input', update);
