@@ -23,6 +23,7 @@
     --gold: #D4AC0D; --gold-light: #FEF9E7; --dark: #1a2236;
     --mid: #444; --muted: #777; --border: #E0E0E0; --bg: #FAFAF8;
     --white: #FFFFFF; --green: #4caf7d; --green-light: #d4f5e5; --radius: 12px;
+    --blue: #38bdf8; --blue-deep: #2563eb;
   }
   body { font-family: 'Heebo', sans-serif; background: var(--bg); color: var(--dark); line-height: 1.6; font-size: 16px; overflow-x: hidden; padding-bottom: 60px; }
   a { color: inherit; text-decoration: none; cursor: pointer; }
@@ -37,6 +38,12 @@
   .logo-sub span { color: var(--gold); font-weight: 500; }
   .header-cta { background: var(--red); color: #fff; padding: 9px 20px; border-radius: 6px; font-size: 14px; font-weight: 700; transition: background 0.2s; }
   .header-cta:hover { background: var(--red-dark); }
+  .anchor-nav { background: linear-gradient(180deg, #1e2a40 0%, var(--dark) 100%); border-bottom: 1px solid rgba(212,172,13,0.15); padding: 16px 24px; display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; position: relative; z-index: 5; }
+  .anchor-nav button { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.75); font-family: inherit; font-size: 13px; font-weight: 600; padding: 9px 18px; border-radius: 24px; cursor: pointer; transition: all 0.25s ease; white-space: nowrap; display: inline-flex; align-items: center; gap: 7px; letter-spacing: 0.2px; }
+  .anchor-nav button svg { width: 14px; height: 14px; opacity: 0.6; flex-shrink: 0; transition: opacity 0.25s ease; }
+  .anchor-nav button:hover { background: rgba(212,172,13,0.1); border-color: rgba(212,172,13,0.35); color: var(--gold); transform: translateY(-1px); }
+  .anchor-nav button:hover svg { opacity: 1; }
+  .anchor-nav button:active { transform: scale(0.97); }
   .hero { background: linear-gradient(170deg, #1e2a40 0%, var(--dark) 55%, #141c2e 100%); color: #fff; padding: 72px 24px 60px; text-align: center; position: relative; overflow: hidden; }
   .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(170deg, transparent 30%, rgba(255,255,255,0.05) 50%, transparent 70%); background-size: 100% 200%; animation: shimmer 3.5s infinite linear; pointer-events: none; }
   .c1 { position:absolute; width:340px; height:340px; border-radius:50%; background:rgba(184,149,42,0.1); top:-80px; right:-80px; animation:pc 3.5s ease-in-out infinite; }
@@ -182,6 +189,166 @@
   .summary-change:hover { color: var(--dark); }
   .any-btn { flex-basis: 100%; background: var(--bg); border-style: dashed; }
 
+  /* ---- Mortgage Check Section — PREMIUM ---- */
+  @keyframes pulse-ring { 0%{box-shadow:0 0 0 0 rgba(212,172,13,0.6);}70%{box-shadow:0 0 0 14px rgba(212,172,13,0);}100%{box-shadow:0 0 0 0 rgba(212,172,13,0);} }
+  @keyframes glow-text { 0%,100%{text-shadow:0 0 10px rgba(212,172,13,0.2);}50%{text-shadow:0 0 30px rgba(212,172,13,0.7),0 0 60px rgba(212,172,13,0.3);} }
+  @keyframes glow-text-blue { 0%,100%{text-shadow:0 0 10px rgba(56,189,248,0.25);}50%{text-shadow:0 0 35px rgba(56,189,248,0.8),0 0 70px rgba(56,189,248,0.35);} }
+  @keyframes rotate-slow { from{transform:rotate(0deg);}to{transform:rotate(360deg);} }
+  @keyframes counter-in { from{opacity:0;transform:translateY(20px) scale(0.8);}to{opacity:1;transform:translateY(0) scale(1);} }
+  @keyframes card-enter { from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:translateY(0);} }
+  @keyframes badge-shine { 0%{background-position:200% center;}100%{background-position:-200% center;} }
+  @keyframes particle-float { 0%{transform:translateY(0) translateX(0) scale(1);opacity:0.7;}50%{transform:translateY(-80px) translateX(20px) scale(1.2);opacity:0.3;}100%{transform:translateY(-160px) translateX(-10px) scale(0.8);opacity:0;} }
+  @keyframes shimmer-line { 0%{transform:translateX(100%);}100%{transform:translateX(-100%);} }
+
+  .mortgage-check-section {
+    position: relative; overflow: hidden;
+    padding: 0; background: #060d1a;
+  }
+  /* Hero image background */
+  .mc-hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background-image: url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1920&q=85&auto=format&fit=crop');
+    background-size: cover; background-position: center 45%;
+    filter: brightness(0.55) saturate(1.1);
+    transform: scale(1.05);
+  }
+  .mc-hero-bg::after {
+    content:''; position:absolute; inset:0;
+    background: linear-gradient(180deg, rgba(20,40,70,0.35) 0%, rgba(15,30,55,0.55) 40%, rgba(6,13,26,0.92) 78%, #060d1a 100%);
+  }
+  /* Animated grid overlay */
+  .mc-grid-overlay {
+    position:absolute; inset:0; z-index:1; pointer-events:none;
+    background-image: linear-gradient(rgba(212,172,13,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(212,172,13,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%);
+  }
+  /* Particles */
+  .mc-particles { position:absolute; inset:0; z-index:1; pointer-events:none; overflow:hidden; }
+  .mc-particle { position:absolute; border-radius:50%; animation:particle-float linear infinite; }
+  /* Rotating ring decoration */
+  .mc-ring { position:absolute; border-radius:50%; border:1px solid rgba(212,172,13,0.12); pointer-events:none; }
+  .mc-ring-1 { width:700px;height:700px;top:50%;right:-200px;transform:translateY(-50%);animation:rotate-slow 40s linear infinite; }
+  .mc-ring-2 { width:500px;height:500px;top:50%;right:-100px;transform:translateY(-50%);animation:rotate-slow 28s linear infinite reverse; border-color:rgba(76,175,125,0.08); }
+  .mc-ring-3 { width:300px;height:300px;top:50%;right:0;transform:translateY(-50%);animation:rotate-slow 18s linear infinite; border-color:rgba(212,172,13,0.06); }
+  .mc-ring-4 { width:420px;height:420px;top:18%;left:-160px;animation:rotate-slow 32s linear infinite reverse; border-color:rgba(56,189,248,0.1); }
+
+  /* NEW badge — electric blue shimmer */
+  .mortgage-new-badge {
+    display:inline-flex; align-items:center; gap:8px;
+    background: linear-gradient(90deg, #2563eb 0%, #38bdf8 30%, #c7e9ff 50%, #38bdf8 70%, #2563eb 100%);
+    background-size: 200% auto;
+    color: #0a1830; font-size:11px; font-weight:900; letter-spacing:2.5px;
+    padding:6px 20px; border-radius:24px; margin-bottom:20px; text-transform:uppercase;
+    animation: badge-shine 3s linear infinite;
+    box-shadow: 0 4px 20px rgba(56,189,248,0.5);
+  }
+  .mortgage-new-badge svg { width:12px;height:12px;fill:#0a1830; }
+
+  .mc-inner { position:relative;z-index:2;padding:100px 24px 80px; }
+  .mc-top { max-width:860px; margin:0 auto 64px; text-align:center; }
+  .mortgage-check-section .section-label { color:var(--gold); letter-spacing:2px; font-size:11px; }
+  .mc-headline { font-size:clamp(30px,5vw,56px); font-weight:900; color:#fff; line-height:1.15; letter-spacing:-1.5px; margin-bottom:18px; animation:glow-text-blue 4s ease-in-out infinite; }
+  .mc-headline .accent-gold { color: var(--blue); text-shadow: 0 0 30px rgba(56,189,248,0.5); }
+  .mc-subline { font-size:clamp(15px,2vw,18px); color:rgba(255,255,255,0.55); max-width:580px; margin:0 auto 48px; line-height:1.8; }
+
+  /* Counter stats row */
+  .mc-stats { display:flex; gap:0; flex-wrap:wrap; max-width:860px; margin:0 auto 72px; border:1px solid rgba(212,172,13,0.2); border-radius:20px; overflow:hidden; background:rgba(255,255,255,0.03); backdrop-filter:blur(8px); }
+  .mc-stat { flex:1; min-width:180px; padding:32px 16px; text-align:center; position:relative; transition:background 0.3s; overflow:hidden; }
+  .mc-stat:not(:last-child)::after { content:''; position:absolute; left:0;top:20%;bottom:20%; width:1px;background:rgba(212,172,13,0.15); }
+  .mc-stat:hover { background:rgba(212,172,13,0.07); }
+  .mc-stat-num { font-size:42px; font-weight:900; color:var(--gold); display:block; line-height:1; margin-bottom:8px; animation:counter-in 0.6s ease both; white-space:nowrap; }
+  .mc-stat-num.mc-stat-num-sm { font-size:32px; }
+  .mc-stat-label { font-size:13px; color:rgba(255,255,255,0.5); line-height:1.5; }
+
+  /* Cards */
+  .mc-cards-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; max-width:900px; margin:0 auto 64px; }
+  .mc-card {
+    position:relative; border-radius:20px; padding:36px 28px; overflow:hidden;
+    border:1px solid rgba(255,255,255,0.08);
+    background:rgba(255,255,255,0.03); backdrop-filter:blur(12px);
+    transition:all 0.4s cubic-bezier(0.23,1,0.32,1);
+    animation:card-enter 0.7s ease both;
+    display:flex; flex-direction:column;
+  }
+  .mc-card:nth-child(2){animation-delay:0.1s;}.mc-card:nth-child(3){animation-delay:0.2s;}
+  .mc-card::before { content:''; position:absolute; inset:0; border-radius:20px; padding:1px; background:linear-gradient(135deg,rgba(212,172,13,0.3),rgba(212,172,13,0),rgba(76,175,125,0.2)); -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; opacity:0; transition:opacity 0.4s; pointer-events:none; }
+  .mc-card:hover { transform:translateY(-8px) scale(1.01); background:rgba(255,255,255,0.07); box-shadow:0 24px 60px rgba(0,0,0,0.5); }
+  .mc-card:hover::before { opacity:1; }
+  /* shimmer sweep on hover */
+  .mc-card::after { content:''; position:absolute; top:0;left:0;right:0;height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); transform:translateX(100%); transition:none; }
+  .mc-card:hover::after { animation:shimmer-line 0.7s ease; }
+  .mc-card-num { position:absolute; top:20px;left:24px; font-size:80px; font-weight:900; color:rgba(212,172,13,0.06); line-height:1; pointer-events:none; font-family:sans-serif; }
+  .mc-card-badge { display:inline-flex;align-items:center;gap:6px; background:rgba(212,172,13,0.1);border:1px solid rgba(212,172,13,0.25);border-radius:8px;padding:6px 12px;margin-bottom:18px; }
+  .mc-card-badge span { font-size:18px; }
+  .mc-card-badge small { font-size:11px;font-weight:700;color:var(--gold);letter-spacing:0.5px;text-transform:uppercase; }
+  .mc-card h4 { font-size:19px;font-weight:800;color:#fff;margin-bottom:12px;line-height:1.3; }
+  .mc-card-saving { display:inline-flex;align-items:center;gap:6px;margin-top:auto;align-self:flex-start;background:rgba(76,175,125,0.1);border:1px solid rgba(76,175,125,0.2);border-radius:8px;padding:6px 12px;font-size:12px;font-weight:700;color:var(--green); }
+  .mc-card p { font-size:14px;color:rgba(255,255,255,0.5);line-height:1.75; flex-grow:1; }
+
+  /* CTA box */
+  .mc-cta-box {
+    max-width:700px; margin:0 auto; text-align:center; position:relative;
+    border-radius:24px; padding:60px 48px;
+    background:linear-gradient(135deg,rgba(212,172,13,0.1) 0%,rgba(212,172,13,0.04) 50%,rgba(76,175,125,0.06) 100%);
+    border:1px solid rgba(212,172,13,0.2);
+    backdrop-filter:blur(16px);
+    overflow:hidden;
+  }
+  .mc-cta-box::before { content:''; position:absolute;inset:0;background:linear-gradient(170deg,transparent 30%,rgba(255,255,255,0.025) 50%,transparent 70%);background-size:100% 200%;animation:shimmer 5s infinite linear;pointer-events:none; }
+  .mc-cta-box::after { content:''; position:absolute;top:-80px;right:-80px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(212,172,13,0.12),transparent 70%);pointer-events:none; }
+  .mc-doc-icon { font-size:56px; display:block;margin-bottom:20px;animation:float 3s ease-in-out infinite; }
+  .mc-cta-headline { font-size:clamp(20px,3vw,28px);font-weight:900;color:#fff;margin-bottom:12px;line-height:1.3; }
+  .mc-cta-desc { font-size:15px;color:rgba(255,255,255,0.6);margin-bottom:32px;line-height:1.8;max-width:480px;margin-left:auto;margin-right:auto; }
+  .mc-cta-desc strong { color:var(--gold); }
+  .mc-steps-row { display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:36px; }
+  .mc-step { display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:10px 16px;font-size:13px;color:rgba(255,255,255,0.7);transition:all 0.2s; }
+  .mc-step:hover { background:rgba(212,172,13,0.1);border-color:rgba(212,172,13,0.3);color:#fff; }
+  .mc-step-num { width:24px;height:24px;border-radius:50%;background:var(--gold);color:#1a2236;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+  .btn-mortgage-check {
+    display:inline-flex;align-items:center;gap:10px;
+    background:linear-gradient(135deg,#D4AC0D,#b8952a);
+    color:#1a2236;padding:20px 48px;border-radius:14px;font-size:18px;font-weight:900;
+    cursor:pointer;border:none;transition:all 0.3s ease;
+    box-shadow:0 8px 32px rgba(212,172,13,0.45),0 2px 8px rgba(0,0,0,0.3);
+    position:relative; overflow:hidden; letter-spacing:-0.3px;
+  }
+  .btn-mortgage-check::before { content:''; position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent);transition:left 0.5s; }
+  .btn-mortgage-check:hover::before { left:150%; }
+  .btn-mortgage-check:hover { transform:translateY(-3px) scale(1.02);box-shadow:0 16px 48px rgba(212,172,13,0.55); }
+  .mc-trust-row { display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:24px; }
+  .mc-why-us { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:14px; max-width:640px; margin:0 auto 32px; position:relative; z-index:2; }
+  .mc-why-item { background:rgba(255,255,255,0.04); border:1px solid rgba(212,172,13,0.18); border-radius:12px; padding:14px 12px; text-align:center; transition:all 0.25s ease; }
+  .mc-why-item:hover { background:rgba(212,172,13,0.08); border-color:rgba(212,172,13,0.4); transform:translateY(-3px); }
+  .mc-why-icon { font-size:24px; margin-bottom:8px; display:block; }
+  .mc-why-item h5 { font-size:13px; font-weight:800; color:#fff; margin-bottom:4px; }
+  .mc-why-item p { font-size:11.5px; color:rgba(255,255,255,0.5); line-height:1.5; }
+  .mc-path-toggle { display:flex; gap:10px; max-width:520px; margin:0 auto 36px; position:relative; z-index:2; }
+  .mc-path-btn { flex:1; padding:14px 12px; border-radius:12px; border:1.5px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.03); color:rgba(255,255,255,0.6); font-family:inherit; font-size:14px; font-weight:700; cursor:pointer; transition:all 0.25s ease; }
+  .mc-path-btn:hover { border-color:rgba(212,172,13,0.35); color:#fff; }
+  .mc-path-btn.active { background:linear-gradient(135deg,#D4AC0D,#b8952a); border-color:transparent; color:#1a2236; box-shadow:0 6px 20px rgba(212,172,13,0.3); }
+  .mc-path-content { display:none; }
+  .mc-path-content.visible { display:block; animation:fadeIn 0.35s ease; }
+  .btn-mortgage-check.btn-blue { background:linear-gradient(135deg,#38bdf8,#2563eb); box-shadow:0 8px 32px rgba(56,189,248,0.4),0 2px 8px rgba(0,0,0,0.3); }
+  .btn-mortgage-check.btn-blue:hover { box-shadow:0 16px 48px rgba(56,189,248,0.5); }
+  .mc-trust-item { display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,0.35); }
+  .mc-trust-item svg { width:14px;height:14px;fill:var(--green);opacity:0.7; }
+
+  /* Hero illustration */
+  .mc-hero-illustration { width: 110px; height: 110px; margin: 0 auto 24px; animation: float 3.4s ease-in-out infinite; filter: drop-shadow(0 12px 30px rgba(56,189,248,0.35)); }
+
+  /* Floating money particles near CTA */
+  .mc-money-float { position:absolute; font-size:22px; opacity:0.25; animation:particle-float 9s linear infinite; pointer-events:none; filter: drop-shadow(0 0 8px rgba(212,172,13,0.4)); }
+  .scroll-hint { background:linear-gradient(135deg,#0e1929,#111827); border-top:1px solid rgba(212,172,13,0.15); padding:22px 24px; text-align:center; position:relative; cursor:pointer; transition:background 0.3s; overflow:hidden; }
+  .scroll-hint:hover { background:linear-gradient(135deg,#141f35,#161e30); }
+  .scroll-hint::before { content:''; position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(212,172,13,0.5),transparent); }
+  .scroll-hint-inner { display:inline-flex; align-items:center; gap:12px; color:rgba(255,255,255,0.7); font-size:14px; font-weight:600; }
+  .scroll-hint-badge { background:linear-gradient(90deg,#2563eb,#38bdf8,#2563eb);background-size:200% auto;color:#0a1830;font-size:10px;font-weight:900;letter-spacing:1.5px;padding:4px 12px;border-radius:10px;text-transform:uppercase;animation:badge-shine 2.5s linear infinite; }
+  .scroll-arrow { display:flex;flex-direction:column;align-items:center;gap:3px;margin-right:4px; }
+  .scroll-arrow span { display:block;width:7px;height:7px;border-left:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:rotate(-45deg);animation:scrollBounce 1.4s ease-in-out infinite; }
+  .scroll-arrow span:nth-child(2){animation-delay:0.18s;opacity:0.55;}.scroll-arrow span:nth-child(3){animation-delay:0.36s;opacity:0.25;}
+  @keyframes scrollBounce{0%,100%{transform:rotate(-45deg) translate(0,0);}50%{transform:rotate(-45deg) translate(3px,3px);}}
+
   @media (max-width: 600px) {
     header { flex-direction: column; gap: 12px; text-align: center; }
     .hero-stats { gap: 20px; }
@@ -204,6 +371,33 @@
   </div>
   <button class="header-cta" onclick="scrollToForm()">לבדיקת הוזלה חינם ←</button>
 </header>
+
+<nav class="anchor-nav">
+  <button onclick="scrollToSection('problemSection')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    הבעיה
+  </button>
+  <button onclick="scrollToSection('processSection')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    איך זה עובד
+  </button>
+  <button onclick="scrollToSection('benefitsSection')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+    היתרונות שלנו
+  </button>
+  <button onclick="scrollToSection('calcSection')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="11" x2="8" y2="11"/><line x1="12" y1="11" x2="12" y2="11"/><line x1="16" y1="11" x2="16" y2="11"/><line x1="8" y1="15" x2="8" y2="15"/><line x1="12" y1="15" x2="12" y2="15"/><line x1="16" y1="15" x2="16" y2="15"/></svg>
+    מחשבון חיסכון
+  </button>
+  <button onclick="scrollToSection('proofSection')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18.5 21 12 16.5 5.5 21l2-7.5L2 9h7z"/></svg>
+    סיפורי הצלחה
+  </button>
+  <button onclick="scrollToSection('mortgageSection')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    ייעוץ משכנתאות
+  </button>
+</nav>
 
 <section class="hero">
   <div class="c1"></div><div class="c2"></div>
@@ -237,7 +431,7 @@
   <span><span class="dot"></span> תשובה תוך 24 שעות</span>
 </div>
 
-<section class="problem">
+<section class="problem" id="problemSection">
   <div class="container">
     <div class="section-label">הבעיה</div>
     <h2 class="section-title">למה אתם משלמים יותר ממה שצריך?</h2>
@@ -250,7 +444,7 @@
   </div>
 </section>
 
-<section class="process">
+<section class="process" id="processSection">
   <div class="container">
     <div class="section-label">איך זה עובד</div>
     <h2 class="section-title">שלושה צעדים פשוטים</h2>
@@ -263,7 +457,7 @@
   </div>
 </section>
 
-<section class="benefits">
+<section class="benefits" id="benefitsSection">
   <div class="container">
     <div class="section-label">למה אנחנו</div>
     <h2 class="section-title">מה מקבלים בבדיקה</h2>
@@ -276,7 +470,7 @@
   </div>
 </section>
 
-<section class="calc-section">
+<section class="calc-section" id="calcSection">
   <div class="container">
     <div class="section-label">כמה תחסכו?</div>
     <h2 class="section-title">מחשבון חיסכון מהיר (35% הנחה)</h2>
@@ -305,7 +499,7 @@
   </div>
 </section>
 
-<section class="proof">
+<section class="proof" id="proofSection">
   <div class="container">
     <div class="section-label">לקוחות מספרים</div>
     <h2 class="section-title">גם הם אמרו "אני כבר במחיר הכי נמוך"</h2>
@@ -474,19 +668,18 @@
           <label>מתי נוח לך שנחזור אליך?</label>
           <input type="hidden" name="טווח שעות מועדף לחזרה" id="callbackHiddenInputNew">
           <div class="picker-section" id="dayPickerSectionNew">
-            <div class="picker-label">📅 איזה יום מועדף עליך?</div>
+            <div class="picker-label">📅 איזה יום מועדף עליך? <span style="font-size:11px;color:var(--muted);font-weight:400;">(ניתן לבחור מספר ימים)</span></div>
             <div class="day-btn-group">
-              <button type="button" class="day-btn" data-day="sunday"    onclick="selectDay('sunday','new')">ראשון</button>
-              <button type="button" class="day-btn" data-day="monday"    onclick="selectDay('monday','new')">שני</button>
-              <button type="button" class="day-btn" data-day="tuesday"   onclick="selectDay('tuesday','new')">שלישי</button>
-              <button type="button" class="day-btn" data-day="wednesday" onclick="selectDay('wednesday','new')">רביעי</button>
-              <button type="button" class="day-btn" data-day="thursday"  onclick="selectDay('thursday','new')">חמישי</button>
-              <button type="button" class="day-btn" data-day="friday"    onclick="selectDay('friday','new')">שישי</button>
-              <button type="button" class="day-btn any-btn" data-day="any" onclick="selectDay('any','new')">לא משנה לי</button>
+              <button type="button" class="day-btn" data-day="sunday"    onclick="toggleDay('sunday','new')">ראשון</button>
+              <button type="button" class="day-btn" data-day="monday"    onclick="toggleDay('monday','new')">שני</button>
+              <button type="button" class="day-btn" data-day="tuesday"   onclick="toggleDay('tuesday','new')">שלישי</button>
+              <button type="button" class="day-btn" data-day="wednesday" onclick="toggleDay('wednesday','new')">רביעי</button>
+              <button type="button" class="day-btn" data-day="thursday"  onclick="toggleDay('thursday','new')">חמישי</button>
+              <button type="button" class="day-btn any-btn" data-day="any" onclick="toggleDay('any','new')">לא משנה לי</button>
             </div>
           </div>
           <div class="picker-section" id="timePickerSectionNew" style="display:none;">
-            <div class="picker-label">🕐 באיזו שעה?</div>
+            <div class="picker-label">🕐 באיזו שעה? <span style="font-size:11px;color:var(--muted);font-weight:400;">(ניתן לבחור מספר טווחים)</span></div>
             <div class="time-btn-group" id="timeBtnGroupNew"></div>
           </div>
           <div class="callback-summary" id="callbackSummaryNew" style="display:none;">
@@ -494,11 +687,15 @@
             <span id="summaryTextNew"></span>
             <button type="button" class="summary-change" onclick="resetCallbackPicker('new')">שנה</button>
           </div>
-          <small style="display:block;margin-top:5px;color:var(--muted);font-size:12px;">שעות פעילות: א׳–ה׳ 8:30–17:30 | שישי 9:00–11:30</small>
+          <small style="display:block;margin-top:5px;color:var(--muted);font-size:12px;">שעות פעילות: א׳–ה׳ 8:30–17:30</small>
         </div>
       </div>
 
       <div class="form-section" id="sectionTransfer">
+        <div class="form-group">
+          <label>מספר זהות</label>
+          <input type="text" name="מספר זהות" placeholder="000000000" maxlength="9">
+        </div>
         <div class="form-group">
           <label>יתרת משכנתא משוערת</label>
           <input type="text" name="יתרת משכנתא משוערת" placeholder="למשל: 500,000 ₪">
@@ -515,19 +712,18 @@
           <label>מתי נוח לך שנחזור אליך?</label>
           <input type="hidden" name="טווח שעות מועדף לחזרה" id="callbackHiddenInputTransfer">
           <div class="picker-section" id="dayPickerSectionTransfer">
-            <div class="picker-label">📅 איזה יום מועדף עליך?</div>
+            <div class="picker-label">📅 איזה יום מועדף עליך? <span style="font-size:11px;color:var(--muted);font-weight:400;">(ניתן לבחור מספר ימים)</span></div>
             <div class="day-btn-group">
-              <button type="button" class="day-btn" data-day="sunday"    onclick="selectDay('sunday','transfer')">ראשון</button>
-              <button type="button" class="day-btn" data-day="monday"    onclick="selectDay('monday','transfer')">שני</button>
-              <button type="button" class="day-btn" data-day="tuesday"   onclick="selectDay('tuesday','transfer')">שלישי</button>
-              <button type="button" class="day-btn" data-day="wednesday" onclick="selectDay('wednesday','transfer')">רביעי</button>
-              <button type="button" class="day-btn" data-day="thursday"  onclick="selectDay('thursday','transfer')">חמישי</button>
-              <button type="button" class="day-btn" data-day="friday"    onclick="selectDay('friday','transfer')">שישי</button>
-              <button type="button" class="day-btn any-btn" data-day="any" onclick="selectDay('any','transfer')">לא משנה לי</button>
+              <button type="button" class="day-btn" data-day="sunday"    onclick="toggleDay('sunday','transfer')">ראשון</button>
+              <button type="button" class="day-btn" data-day="monday"    onclick="toggleDay('monday','transfer')">שני</button>
+              <button type="button" class="day-btn" data-day="tuesday"   onclick="toggleDay('tuesday','transfer')">שלישי</button>
+              <button type="button" class="day-btn" data-day="wednesday" onclick="toggleDay('wednesday','transfer')">רביעי</button>
+              <button type="button" class="day-btn" data-day="thursday"  onclick="toggleDay('thursday','transfer')">חמישי</button>
+              <button type="button" class="day-btn any-btn" data-day="any" onclick="toggleDay('any','transfer')">לא משנה לי</button>
             </div>
           </div>
           <div class="picker-section" id="timePickerSectionTransfer" style="display:none;">
-            <div class="picker-label">🕐 באיזו שעה?</div>
+            <div class="picker-label">🕐 באיזו שעה? <span style="font-size:11px;color:var(--muted);font-weight:400;">(ניתן לבחור מספר טווחים)</span></div>
             <div class="time-btn-group" id="timeBtnGroupTransfer"></div>
           </div>
           <div class="callback-summary" id="callbackSummaryTransfer" style="display:none;">
@@ -535,7 +731,7 @@
             <span id="summaryTextTransfer"></span>
             <button type="button" class="summary-change" onclick="resetCallbackPicker('transfer')">שנה</button>
           </div>
-          <small style="display:block;margin-top:5px;color:var(--muted);font-size:12px;">שעות פעילות: א׳–ה׳ 8:30–17:30 | שישי 9:00–11:30</small>
+          <small style="display:block;margin-top:5px;color:var(--muted);font-size:12px;">שעות פעילות: א׳–ה׳ 8:30–17:30</small>
         </div>
       </div>
 
@@ -549,6 +745,134 @@
   </div>
 </div>
 
+<div class="scroll-hint" onclick="document.getElementById('mortgageSection').scrollIntoView({behavior:'smooth',block:'start'})">
+  <div class="scroll-hint-inner">
+    <span class="scroll-hint-badge">✨ חדש באתר</span>
+    <span>יש לך משכנתא? גלה אם תוכל לחסוך עליה אלפי שקלים ←</span>
+    <div class="scroll-arrow">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</div>
+
+<section class="mortgage-check-section" id="mortgageSection">
+  <div class="mc-hero-bg"></div>
+  <div class="mc-grid-overlay"></div>
+  <!-- Rotating rings -->
+  <div class="mc-ring mc-ring-1"></div>
+  <div class="mc-ring mc-ring-2"></div>
+  <div class="mc-ring mc-ring-3"></div>
+  <!-- Floating particles -->
+  <div class="mc-particles" id="mcParticles"></div>
+
+  <div class="mc-inner">
+    <!-- Top headline -->
+    <div class="mc-top">
+      <div class="mortgage-new-badge">
+        <svg viewBox="0 0 16 16"><path d="M8 0L9.8 5.5H16L11 8.9L12.9 14.4L8 11L3.1 14.4L5 8.9L0 5.5H6.2Z"/></svg>
+        חדש באתר
+        <svg viewBox="0 0 16 16"><path d="M8 0L9.8 5.5H16L11 8.9L12.9 14.4L8 11L3.1 14.4L5 8.9L0 5.5H6.2Z"/></svg>
+      </div>
+      <div class="section-label">ייעוץ משכנתאות מקצועי</div>
+      <h2 class="mc-headline">המשכנתא שלך גובה ממך<br><span class="accent-gold">יותר מדי.</span> הגיע הזמן לבדוק.</h2>
+      <p class="mc-subline">יועץ משכנתאות מוסמך עם שנות ניסיון יבחן את הפוליסה שלך, יזהה הזדמנויות מיחזור והוזלה, ויחזור אליך עם תמונה מלאה — <strong style="color:rgba(255,255,255,0.85);">הבדיקה הראשונית בחינם, ללא כל התחייבות.</strong></p>
+    </div>
+
+    <!-- Stats row -->
+    <div class="mc-stats">
+      <div class="mc-stat">
+        <span class="mc-stat-num" data-target="40" data-suffix="%">0%</span>
+        <span class="mc-stat-label">מהמשכנתאות ניתנות<br>למיחזור בתנאים טובים יותר</span>
+      </div>
+      <div class="mc-stat">
+        <span class="mc-stat-num mc-stat-num-sm" data-target="150" data-prefix="₪" data-suffix=",000">₪0</span>
+        <span class="mc-stat-label">חיסכון ממוצע לאורך<br>חיי ההלוואה למי שמיחזר*</span>
+      </div>
+      <div class="mc-stat">
+        <span class="mc-stat-num">₪0</span>
+        <span class="mc-stat-label">עלות הבדיקה<br>הראשונית — חינם לגמרי</span>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:11px;color:rgba(255,255,255,0.3);max-width:560px;margin:-50px auto 64px;">* הערכה כללית בלבד, המבוססת על מקרים שטופלו בעבר. החיסכון בפועל משתנה לפי תנאי ההלוואה ונתוני הלקוח.</p>
+
+    <!-- Cards -->
+    <div class="mc-cards-grid">
+      <div class="mc-card">
+        <div class="mc-card-num">01</div>
+        <div class="mc-card-badge"><span>🔄</span><small>מיחזור</small></div>
+        <h4>מיחזור מושכל — לא סתם גלגול חוב</h4>
+        <p>ניתוח מדוקדק של מסלולי ריבית, לוח סילוקין ועלויות פירעון מוקדם. מיחזור נכון יכול לשנות את התמונה הכלכלית לשנים קדימה.</p>
+        <div class="mc-card-saving">↑ חיסכון ממוצע: עשרות אלפי ₪</div>
+      </div>
+      <div class="mc-card">
+        <div class="mc-card-num">02</div>
+        <div class="mc-card-badge"><span>📊</span><small>הוזלה</small></div>
+        <h4>הוזלה חכמה — בלי לוותר על דבר</h4>
+        <p>בדיקת מבנה ההחזר, פיצול מסלולים ושינוי ריבית קבועה-משתנה. שינוי קטן במבנה ההלוואה מוריד לעתים מאות שקלים מהחזר חודשי.</p>
+        <div class="mc-card-saving">↓ הפחתה אפשרית בהחזר החודשי</div>
+      </div>
+      <div class="mc-card">
+        <div class="mc-card-num">03</div>
+        <div class="mc-card-badge"><span>🏦</span><small>תכנון</small></div>
+        <h4>תכנון ארוך-טווח — ראייה שלמה</h4>
+        <p>מעבר על דו"ח יתרות המשכנתא, ניתוח מסלולי פריים, קל"צ וריבית קבועה — וגיבוש המלצה מותאמת לצמצום העלות הכוללת.</p>
+        <div class="mc-card-saving">✓ ייעוץ אישי מותאם למצב שלך</div>
+      </div>
+    </div>
+
+    <!-- CTA Box -->
+    <div class="mc-cta-box">
+      <span class="mc-doc-icon">📄</span>
+      <div class="mc-cta-headline" style="margin-bottom:8px;">למה לבחור ביועץ שלנו?</div>
+      <p class="mc-cta-desc" style="margin-bottom:24px;">יש הרבה יועצי משכנתאות בשוק — אנחנו שמים את הדגש על מה שחשוב באמת: <strong>שירות אמיתי, מקצועי וזריז</strong>, שמתורגם לתוצאה בכיס שלכם.</p>
+      <div class="mc-why-us">
+        <div class="mc-why-item"><span class="mc-why-icon">🏅</span><h5>ניסיון ומקצועיות</h5><p>שנות ניסיון בליווי לקוחות מול הבנקים</p></div>
+        <div class="mc-why-item"><span class="mc-why-icon">🤝</span><h5>קשרים בכל הבנקים</h5><p>היכרות אישית עם הגורמים המקצועיים</p></div>
+        <div class="mc-why-item"><span class="mc-why-icon">⚡</span><h5>זריזות ויחס אישי</h5><p>מענה מהיר וליווי צמוד מתחילת התהליך</p></div>
+        <div class="mc-why-item"><span class="mc-why-icon">🔒</span><h5>אמינות ושקיפות</h5><p>בלי הפתעות, בלי אותיות קטנות</p></div>
+      </div>
+
+      <div class="mc-path-toggle">
+        <button type="button" class="mc-path-btn active" id="btnPathExisting" onclick="selectMortgagePath('existing')">יש לי משכנתא קיימת</button>
+        <button type="button" class="mc-path-btn" id="btnPathNew" onclick="selectMortgagePath('new')">לוקח/ת משכנתא חדשה</button>
+      </div>
+
+      <div class="mc-path-content visible" id="pathExisting">
+        <div class="mc-cta-headline">שלחו דו"ח יתרות — תקבלו תשובה תוך 24 שעות</div>
+        <p class="mc-cta-desc">יועץ משכנתאות מוסמך יבחן את הדו"ח, יזהה הזדמנויות חיסכון ויחזור אליכם עם <strong>המלצה ברורה, ממוקדת ואישית</strong> — הבדיקה הראשונית ללא עלות וללא כל התחייבות.</p>
+        <div class="mc-steps-row">
+          <div class="mc-step"><div class="mc-step-num">1</div>הורידו דו"ח יתרות מהבנק</div>
+          <div class="mc-step"><div class="mc-step-num">2</div>שלחו אותו במייל בלחיצה</div>
+          <div class="mc-step"><div class="mc-step-num">3</div>יועץ יחזור תוך 24 שעות</div>
+        </div>
+        <button class="btn-mortgage-check" onclick="openMortgageEmail(event)">
+          <span>📩</span> שלח דו"ח יתרות לבדיקה חינם ←
+        </button>
+      </div>
+
+      <div class="mc-path-content" id="pathNew">
+        <div class="mc-cta-headline">לוקחים משכנתא חדשה? קבלו ייעוץ מקצועי מלא</div>
+        <p class="mc-cta-desc">יועץ משכנתאות מוסמך יעבור איתכם על <strong>כל התמונה הפיננסית</strong>: הכנסות חודשיות, הון עצמי, החזרים קיימים ואפילו בדיקת סירובי בנקים — ויבנה עבורכם תמהיל ואסטרטגיה מותאמת אישית, <strong>ללא עלות על הבדיקה הראשונית</strong>.</p>
+        <div class="mc-steps-row">
+          <div class="mc-step"><div class="mc-step-num">1</div>השאירו פרטים בסיסיים</div>
+          <div class="mc-step"><div class="mc-step-num">2</div>נסדר עבורכם את כל הנתונים</div>
+          <div class="mc-step"><div class="mc-step-num">3</div>יועץ יחזור עם תמהיל מותאם</div>
+        </div>
+        <button class="btn-mortgage-check btn-blue" onclick="openNewMortgageEmail(event)">
+          <span>🏠</span> בקשת ייעוץ למשכנתא חדשה ←
+        </button>
+      </div>
+
+      <div class="mc-trust-row">
+        <div class="mc-trust-item"><svg viewBox="0 0 16 16"><path d="M8 0L9.8 5.5H16L11 8.9L12.9 14.4L8 11L3.1 14.4L5 8.9L0 5.5Z"/></svg> בדיקה חינם לגמרי</div>
+        <div class="mc-trust-item"><svg viewBox="0 0 16 16"><path d="M8 0L9.8 5.5H16L11 8.9L12.9 14.4L8 11L3.1 14.4L5 8.9L0 5.5Z"/></svg> ללא כל התחייבות</div>
+        <div class="mc-trust-item"><svg viewBox="0 0 16 16"><path d="M8 0L9.8 5.5H16L11 8.9L12.9 14.4L8 11L3.1 14.4L5 8.9L0 5.5Z"/></svg> פרטיכם מאובטחים</div>
+      </div>
+      <p style="text-align:center;font-size:13px;color:rgba(255,255,255,0.4);margin-top:18px;">חיכיתם מספיק זמן! לא קיבלתם תשובות? הגיע הזמן ליועץ שעונה, מטפל ומלווה אתכם עד הסוף.</p>
+    </div>
+  </div>
+</section>
+
 <footer>
   <p>© 2025 | ביטוח חכם למשכנתא | כל הזכויות שמורות</p>
 </footer>
@@ -559,6 +883,51 @@
 </div>
 
 <script>
+  function openNewMortgageEmail(e) {
+    e.preventDefault();
+    const to      = 'z7621752@gmail.com';
+    const subject = encodeURIComponent('ייעוץ למשכנתא חדשה');
+    const body    = encodeURIComponent('שלום,\n\nאני בתהליך לקיחת משכנתא חדשה ומעוניין/ת בייעוץ מקצועי מלא — כולל סידור הנתונים הפיננסיים (הכנסות, הון עצמי, החזרים קיימים וכו׳) ובניית תמהיל מותאם.\n\nשם: \nטלפון: ');
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (isMobile) {
+      window.location.href = 'mailto:' + to + '?subject=' + subject + '&body=' + body;
+    } else {
+      const link = document.createElement('a');
+      link.href = 'https://mail.google.com/mail/?view=cm&to=' + to + '&su=' + subject + '&body=' + body;
+      link.target = '_blank';
+      link.rel = 'noopener';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  }
+
+  function selectMortgagePath(path) {
+    document.getElementById('btnPathExisting').classList.toggle('active', path === 'existing');
+    document.getElementById('btnPathNew').classList.toggle('active', path === 'new');
+    document.getElementById('pathExisting').classList.toggle('visible', path === 'existing');
+    document.getElementById('pathNew').classList.toggle('visible', path === 'new');
+  }
+
+  function openMortgageEmail(e) {
+    e.preventDefault();
+    const to      = 'z7621752@gmail.com';
+    const subject = encodeURIComponent('בדיקת משכנתא — דו"ח יתרות');
+    const body    = encodeURIComponent('שלום,\n\nאני מעוניין/ת בבדיקת מיחזור / הוזלה למשכנתא שלי.\n\nשם: \nטלפון: \n\nמצורף דו"ח יתרות המשכנתא.');
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (isMobile) {
+      window.location.href = 'mailto:' + to + '?subject=' + subject + '&body=' + body;
+    } else {
+      const link = document.createElement('a');
+      link.href = 'https://mail.google.com/mail/?view=cm&to=' + to + '&su=' + subject + '&body=' + body;
+      link.target = '_blank';
+      link.rel = 'noopener';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  }
+
   function openEmail(e) {
     e.preventDefault();
     const to      = 'z7621752@gmail.com';
@@ -581,6 +950,11 @@
   function scrollToForm() {
     const element = document.getElementById("leadFormSection");
     if (element) element.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  function scrollToSection(id) {
+    const element = document.getElementById(id);
+    if (element) element.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   function update() {
@@ -620,7 +994,7 @@
     document.getElementById('submitBtn').style.display = 'block';
   }
 
-  /* ---- Day & Time Picker (supports two forms: 'new' and 'transfer') ---- */
+  /* ---- Day & Time Picker — multi-select (supports two forms: 'new' and 'transfer') ---- */
   const weekdaySlots = [
     { label: '8:30 – 10:00',  suffix: '08:30–10:00' },
     { label: '10:00 – 12:00', suffix: '10:00–12:00' },
@@ -628,80 +1002,208 @@
     { label: '14:00 – 16:00', suffix: '14:00–16:00' },
     { label: '16:00 – 17:30', suffix: '16:00–17:30' },
   ];
-  const timeSlots = {
-    sunday:    weekdaySlots.map(s => ({ label: s.label, value: 'ראשון ' + s.suffix })),
-    monday:    weekdaySlots.map(s => ({ label: s.label, value: 'שני ' + s.suffix })),
-    tuesday:   weekdaySlots.map(s => ({ label: s.label, value: 'שלישי ' + s.suffix })),
-    wednesday: weekdaySlots.map(s => ({ label: s.label, value: 'רביעי ' + s.suffix })),
-    thursday:  weekdaySlots.map(s => ({ label: s.label, value: 'חמישי ' + s.suffix })),
-    friday: [
-      { label: '9:00 – 10:00',  value: 'שישי 09:00–10:00' },
-      { label: '10:00 – 11:30', value: 'שישי 10:00–11:30' },
-    ],
-    any: weekdaySlots.map(s => ({ label: s.label, value: 'כל יום ' + s.suffix })),
-  };
-  const dayLabels = { sunday: 'ראשון', monday: 'שני', tuesday: 'שלישי', wednesday: 'רביעי', thursday: 'חמישי', friday: 'שישי', any: 'כל יום' };
+  const dayNames = { sunday: 'ראשון', monday: 'שני', tuesday: 'שלישי', wednesday: 'רביעי', thursday: 'חמישי' };
+  const allDays = ['sunday','monday','tuesday','wednesday','thursday'];
 
-  const selectedDays = { new: null, transfer: null };
+  // State: sets of selected days and time slots per form
+  const pickerState = {
+    new:      { days: new Set(), times: new Set() },
+    transfer: { days: new Set(), times: new Set() }
+  };
 
   function suffix(formType) { return formType === 'new' ? 'New' : 'Transfer'; }
 
-  function selectDay(day, formType) {
-    selectedDays[formType] = day;
-    const s = suffix(formType);
-    
-    document.querySelectorAll('#sectionNew .day-btn, #sectionTransfer .day-btn').forEach(b => {
-      if (b.closest('#section' + s)) {
-        // עקיפת בעיית התרגום האוטומטי: בדיקה גם לפי ה-dataset וגם לפי פקודת ה-onclick שלא מתורגמת
-        const isMatch = b.dataset.day === day || (b.getAttribute('onclick') || '').includes(day);
-        b.classList.toggle('active', isMatch);
+  function toggleDay(day, formType) {
+    const state = pickerState[formType];
+    if (day === 'any') {
+      // "לא משנה לי" — clear all and select all days
+      state.days.clear();
+      allDays.forEach(d => state.days.add(d));
+      // mark any-btn active, clear individual day btns
+      const s = suffix(formType);
+      document.querySelectorAll('#section' + s + ' .day-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.day === 'any' || b.dataset.day === 'any');
+      });
+    } else {
+      if (state.days.has(day)) {
+        state.days.delete(day);
+      } else {
+        state.days.add(day);
+        // deselect "any" if specific day chosen
+        state.days.delete('any');
       }
-    });
-
-    const group = document.getElementById('timeBtnGroup' + s);
-    group.innerHTML = '';
-    
-    const slotsToShow = [...timeSlots[day]];
-    const dayName = dayLabels[day];
-    slotsToShow.push({ label: 'לא משנה לי', value: dayName + ' – כל שעה' });
-    
-    slotsToShow.forEach(slot => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'time-btn' + (slot.label === 'לא משנה לי' ? ' any-btn' : '');
-      btn.textContent = slot.label;
-      btn.dataset.value = slot.value;
-      btn.onclick = () => selectTime(slot, btn, formType);
-      group.appendChild(btn);
-    });
-    
-    document.getElementById('timePickerSection' + s).style.display = 'block';
-    document.getElementById('callbackSummary' + s).style.display = 'none';
-    document.getElementById('callbackHiddenInput' + s).value = '';
+    }
+    refreshDayBtns(formType);
+    renderTimePicker(formType);
+    updateHiddenInput(formType);
   }
 
-  function selectTime(slot, btn, formType) {
+  function refreshDayBtns(formType) {
     const s = suffix(formType);
-    document.querySelectorAll('#timeBtnGroup' + s + ' .time-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('callbackHiddenInput' + s).value = slot.value;
-    const dayLabel = dayLabels[selectedDays[formType]];
-    const timeDisplay = btn.textContent === 'לא משנה לי' ? 'כל שעה' : btn.textContent;
-    document.getElementById('summaryText' + s).textContent = dayLabel + ', ' + timeDisplay;
-    document.getElementById('callbackSummary' + s).style.display = 'flex';
-    document.getElementById('dayPickerSection' + s).style.display = 'none';
-    document.getElementById('timePickerSection' + s).style.display = 'none';
+    const state = pickerState[formType];
+    const isAny = allDays.every(d => state.days.has(d)) && state.days.size === 5;
+    document.querySelectorAll('#section' + s + ' .day-btn').forEach(b => {
+      const d = b.dataset.day;
+      if (d === 'any') {
+        b.classList.toggle('active', isAny);
+      } else {
+        b.classList.toggle('active', state.days.has(d));
+      }
+    });
+  }
+
+  function renderTimePicker(formType) {
+    const s = suffix(formType);
+    const state = pickerState[formType];
+    const group = document.getElementById('timeBtnGroup' + s);
+    group.innerHTML = '';
+
+    if (state.days.size === 0) {
+      document.getElementById('timePickerSection' + s).style.display = 'none';
+      updateSummary(formType);
+      return;
+    }
+
+    document.getElementById('timePickerSection' + s).style.display = 'block';
+
+    // Show all time slots (same for all days)
+    weekdaySlots.forEach(slot => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'time-btn' + (state.times.has(slot.suffix) ? ' active' : '');
+      btn.textContent = slot.label;
+      btn.dataset.suffix = slot.suffix;
+      btn.onclick = () => toggleTime(slot.suffix, formType);
+      group.appendChild(btn);
+    });
+
+    // "לא משנה לי" time btn
+    const anyBtn = document.createElement('button');
+    anyBtn.type = 'button';
+    anyBtn.className = 'time-btn any-btn' + (state.times.has('any') ? ' active' : '');
+    anyBtn.textContent = 'לא משנה לי';
+    anyBtn.dataset.suffix = 'any';
+    anyBtn.onclick = () => toggleTime('any', formType);
+    group.appendChild(anyBtn);
+  }
+
+  function toggleTime(timeSuffix, formType) {
+    const state = pickerState[formType];
+    if (timeSuffix === 'any') {
+      if (state.times.has('any')) {
+        state.times.clear();
+      } else {
+        state.times.clear();
+        state.times.add('any');
+      }
+    } else {
+      state.times.delete('any');
+      if (state.times.has(timeSuffix)) {
+        state.times.delete(timeSuffix);
+      } else {
+        state.times.add(timeSuffix);
+      }
+    }
+    renderTimePicker(formType);
+    updateHiddenInput(formType);
+    updateSummary(formType);
+  }
+
+  function updateHiddenInput(formType) {
+    const s = suffix(formType);
+    const state = pickerState[formType];
+    if (state.days.size === 0 || state.times.size === 0) {
+      document.getElementById('callbackHiddenInput' + s).value = '';
+      return;
+    }
+
+    const isAnyDay = allDays.every(d => state.days.has(d));
+    const daysStr = isAnyDay ? 'כל יום' : [...state.days].map(d => dayNames[d]).join(', ');
+
+    let timesStr;
+    if (state.times.has('any')) {
+      timesStr = 'כל שעה';
+    } else {
+      timesStr = [...state.times].join(' | ');
+    }
+
+    document.getElementById('callbackHiddenInput' + s).value = daysStr + ' — ' + timesStr;
+    updateSummary(formType);
+  }
+
+  function updateSummary(formType) {
+    const s = suffix(formType);
+    const state = pickerState[formType];
+    const val = document.getElementById('callbackHiddenInput' + s).value;
+    if (val) {
+      document.getElementById('summaryText' + s).textContent = val;
+      document.getElementById('callbackSummary' + s).style.display = 'flex';
+    } else {
+      document.getElementById('callbackSummary' + s).style.display = 'none';
+    }
   }
 
   function resetCallbackPicker(formType) {
     const s = suffix(formType);
-    selectedDays[formType] = null;
+    pickerState[formType].days.clear();
+    pickerState[formType].times.clear();
     document.getElementById('callbackSummary' + s).style.display = 'none';
     document.getElementById('dayPickerSection' + s).style.display = 'block';
     document.getElementById('timePickerSection' + s).style.display = 'none';
     document.querySelectorAll('#section' + s + ' .day-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('callbackHiddenInput' + s).value = '';
+    document.getElementById('timeBtnGroup' + s).innerHTML = '';
   }
+
+  /* ---- Particles for mortgage section ---- */
+  (function() {
+    const container = document.getElementById('mcParticles');
+    if (!container) return;
+    const colors = ['rgba(212,172,13,', 'rgba(184,149,42,', 'rgba(255,255,255,'];
+    for (let i = 0; i < 22; i++) {
+      const p = document.createElement('div');
+      p.className = 'mc-particle';
+      const size = Math.random() * 4 + 1.5;
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      const opacity = (Math.random() * 0.4 + 0.1).toFixed(2);
+      p.style.cssText = `
+        width:${size}px;height:${size}px;
+        background:${color}${opacity});
+        left:${Math.random() * 100}%;
+        top:${Math.random() * 100}%;
+        animation-duration:${Math.random() * 12 + 8}s;
+        animation-delay:${Math.random() * 6}s;
+      `;
+      container.appendChild(p);
+    }
+  })();
+
+  /* ---- Animated counters ---- */
+  (function() {
+    const counters = document.querySelectorAll('.mc-stat-num[data-target]');
+    if (!counters.length) return;
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseInt(el.dataset.target);
+        const prefix = el.dataset.prefix || '';
+        const suffix = el.dataset.suffix || '';
+        let start = 0;
+        const dur = 1600;
+        const step = timestamp => {
+          if (!start) start = timestamp;
+          const progress = Math.min((timestamp - start) / dur, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = prefix + Math.round(eased * target).toLocaleString() + suffix;
+          if (progress < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+        observer.unobserve(el);
+      });
+    }, { threshold: 0.4 });
+    counters.forEach(c => observer.observe(c));
+  })();
 
   document.getElementById('currPrice').addEventListener('input', update);
   document.getElementById('yearsLeft').addEventListener('input', update);
