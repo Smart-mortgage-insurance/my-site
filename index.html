@@ -1340,5 +1340,46 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
 </script>
 
+<!-- ---- Visitor tracking (Supabase) ---- -->
+<script>
+(function(){
+  var SUPA_URL = "https://ktcabahjyjmtfavlsdks.supabase.co";
+  var SUPA_KEY = "sb_publishable_jYj0az-JCWUc3ga1fRYcew_La1y7qVw";
+  function device(){
+    var ua = navigator.userAgent;
+    if(/Tablet|iPad/i.test(ua)) return 'טאבלט';
+    if(/Mobi|Android/i.test(ua)) return 'מובייל';
+    return 'מחשב';
+  }
+  var startTime = Date.now();
+  var converted = false;
+  var sent = false;
+
+  function sendVisit(){
+    if(sent) return; sent = true;
+    var duration = Math.round((Date.now()-startTime)/1000);
+    try{
+      fetch(SUPA_URL + '/rest/v1/visits', {
+        method:'POST', keepalive:true,
+        headers:{'Content-Type':'application/json','apikey':SUPA_KEY,'Prefer':'return=minimal'},
+        body: JSON.stringify({
+          path: location.pathname,
+          referrer: document.referrer || null,
+          user_agent: navigator.userAgent,
+          device: device(),
+          duration: duration,
+          converted: converted
+        })
+      });
+    }catch(e){}
+  }
+  document.addEventListener('visibilitychange', function(){ if(document.visibilityState==='hidden') sendVisit(); });
+  window.addEventListener('pagehide', sendVisit);
+
+  var mainForm = document.querySelector('form.main-form');
+  if(mainForm) mainForm.addEventListener('submit', function(){ converted = true; sendVisit(); });
+})();
+</script>
+
 </body>
 </html>
