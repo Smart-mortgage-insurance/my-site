@@ -1373,11 +1373,27 @@
       });
     }catch(e){}
   }
-  document.addEventListener('visibilitychange', function(){ if(document.visibilityState==='hidden') sendVisit(); });
+  /* Backgrounding the page used to send the visit and lock it in as "not
+     converted": someone half-way through the form who switches apps to look up
+     their balance and comes back to submit was recorded as a non-conversion.
+     So once a field has been touched we hold the record until the page really
+     goes away, or until the form is submitted — whichever comes first. */
+  var touched = false;
+  document.addEventListener('input', function(e){
+    if(e.target && e.target.form) touched = true;
+  }, true);
+
+  document.addEventListener('visibilitychange', function(){
+    if(document.visibilityState === 'hidden' && !touched) sendVisit();
+  });
   window.addEventListener('pagehide', sendVisit);
 
-  var mainForm = document.querySelector('form.main-form');
-  if(mainForm) mainForm.addEventListener('submit', function(){ converted = true; sendVisit(); });
+  /* Every form counts, not just the main one — the feedback form was never
+     wired up, so enquiries sent through it were never counted as conversions. */
+  var forms = document.querySelectorAll('form');
+  for(var i=0;i<forms.length;i++){
+    forms[i].addEventListener('submit', function(){ converted = true; sendVisit(); });
+  }
 })();
 </script>
 
